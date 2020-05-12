@@ -14,13 +14,13 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
       <width>961</width>
-      <height>891</height>
+      <height>911</height>
      </rect>
     </property>
    </widget>
@@ -41,7 +41,7 @@
    </widget>
    <widget class="QMenu" name="menuEdit_Record">
     <property name="title">
-     <string>Edit Record</string>
+     <string>View Record</string>
     </property>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -55,8 +55,8 @@
     <addaction name="actionRecord_Last_to_First"/>
    </widget>
    <addaction name="menuPrint"/>
-   <addaction name="menuEdit_Record"/>
    <addaction name="menuView"/>
+   <addaction name="menuEdit_Record"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionA_to_Z">

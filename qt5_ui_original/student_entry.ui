@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>916</width>
+    <width>908</width>
     <height>1046</height>
    </rect>
   </property>
@@ -20,10 +20,10 @@
       <x>0</x>
       <y>30</y>
       <width>901</width>
-      <height>161</height>
+      <height>167</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0">
+    <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0">
      <item row="1" column="0">
       <widget class="QLabel" name="label_5">
        <property name="text">
@@ -34,24 +34,17 @@
      <item row="0" column="5">
       <widget class="QLineEdit" name="lineEdit_10"/>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_9">
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="4">
+     <item row="3" column="4">
       <widget class="QLabel" name="label_10">
        <property name="text">
         <string>Date of Admission</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
+     <item row="3" column="1">
       <widget class="QLineEdit" name="lineEdit_11"/>
      </item>
-     <item row="2" column="3">
+     <item row="3" column="3">
       <widget class="QLineEdit" name="lineEdit_8"/>
      </item>
      <item row="0" column="4">
@@ -71,7 +64,7 @@
      <item row="1" column="1">
       <widget class="QLineEdit" name="lineEdit_5"/>
      </item>
-     <item row="2" column="2">
+     <item row="3" column="2">
       <widget class="QLabel" name="label">
        <property name="text">
         <string>Hospital Name</string>
@@ -84,7 +77,7 @@
      <item row="0" column="3">
       <widget class="QLineEdit" name="lineEdit_7"/>
      </item>
-     <item row="3" column="3">
+     <item row="4" column="3">
       <widget class="QRadioButton" name="radioButton_2">
        <property name="text">
         <string>Male</string>
@@ -108,15 +101,12 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="3" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
         <string>Nationality</string>
        </property>
       </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEdit_4"/>
      </item>
      <item row="0" column="0">
       <widget class="QLabel" name="label_2">
@@ -128,36 +118,69 @@
      <item row="0" column="1">
       <widget class="QLineEdit" name="lineEdit_3"/>
      </item>
-     <item row="3" column="2">
-      <widget class="QLabel" name="label_11">
-       <property name="text">
-        <string>Gender</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="5">
+     <item row="3" column="5">
       <widget class="QDateEdit" name="dateEdit_2">
        <property name="calendarPopup">
         <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="4" column="3">
+     <item row="5" column="3">
       <widget class="QRadioButton" name="radioButton">
        <property name="text">
         <string>Female</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="4">
+     <item row="4" column="4">
       <widget class="QLabel" name="label_52">
        <property name="text">
         <string>Primary Caregiver</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="5">
+     <item row="4" column="5">
       <widget class="QLineEdit" name="lineEdit"/>
+     </item>
+     <item row="2" column="3">
+      <widget class="QFrame" name="frame">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QGraphicsView" name="graphicsView">
+        <property name="geometry">
+         <rect>
+          <x>860</x>
+          <y>0</y>
+          <width>31</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_41">
+        <property name="geometry">
+         <rect>
+          <x>740</x>
+          <y>0</y>
+          <width>121</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Record Number</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>Gender</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -174,8 +197,13 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ggg&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
+    <widget class="QWidget" name="tab_12">
+     <attribute name="title">
+      <string>Medicines</string>
+     </attribute>
+    </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>Father</string>
@@ -323,15 +351,148 @@
      <attribute name="title">
       <string>Mother</string>
      </attribute>
+     <widget class="QWidget" name="gridLayoutWidget_7">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>901</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="1" column="5">
+        <widget class="QLineEdit" name="lineEdit_53"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_61">
+         <property name="text">
+          <string>Living with child?</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_62">
+         <property name="text">
+          <string>Work Address</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="label_63">
+         <property name="text">
+          <string>Email</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_64">
+         <property name="text">
+          <string>Given Names</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit_54"/>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_65">
+         <property name="text">
+          <string>Occupation</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLineEdit" name="lineEdit_55"/>
+       </item>
+       <item row="3" column="3">
+        <widget class="QLineEdit" name="lineEdit_56"/>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLineEdit" name="lineEdit_57"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="lineEdit_58"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_66">
+         <property name="text">
+          <string>Phone No.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_67">
+         <property name="text">
+          <string>Education</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="lineEdit_59"/>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLabel" name="label_68">
+         <property name="text">
+          <string>Workplace</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="lineEdit_60"/>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLabel" name="label_69">
+         <property name="text">
+          <string>Work No.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QPlainTextEdit" name="plainTextEdit_6"/>
+       </item>
+       <item row="4" column="3">
+        <widget class="QLineEdit" name="lineEdit_61"/>
+       </item>
+       <item row="4" column="2">
+        <widget class="QLabel" name="label_70">
+         <property name="text">
+          <string>Mailing PO Box</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLineEdit" name="lineEdit_62"/>
+       </item>
+       <item row="0" column="5">
+        <widget class="QLineEdit" name="lineEdit_63"/>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLineEdit" name="lineEdit_64"/>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="label_71">
+         <property name="text">
+          <string>Last Name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="4">
+        <widget class="QLabel" name="label_72">
+         <property name="text">
+          <string>Mailing PC </string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="5">
+        <widget class="QLineEdit" name="lineEdit_65"/>
+       </item>
+      </layout>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
       <string>Family</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_6">
-     <attribute name="title">
-      <string>Family members</string>
      </attribute>
     </widget>
     <widget class="QWidget" name="tab_7">
@@ -352,16 +513,6 @@
     <widget class="QWidget" name="tab_10">
      <attribute name="title">
       <string>Prenatal</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_11">
-     <attribute name="title">
-      <string>Complications</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_12">
-     <attribute name="title">
-      <string>Medicines</string>
      </attribute>
     </widget>
     <widget class="QWidget" name="tab_13">
@@ -397,7 +548,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>200</y>
+      <y>210</y>
       <width>111</width>
       <height>17</height>
      </rect>
@@ -572,7 +723,7 @@
       <x>0</x>
       <y>440</y>
       <width>901</width>
-      <height>239</height>
+      <height>255</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_5">
@@ -679,58 +830,6 @@
      </item>
     </layout>
    </widget>
-   <widget class="QFrame" name="frame">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>911</width>
-      <height>681</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QGraphicsView" name="graphicsView">
-     <property name="geometry">
-      <rect>
-       <x>860</x>
-       <y>0</y>
-       <width>31</width>
-       <height>20</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_41">
-     <property name="geometry">
-      <rect>
-       <x>740</x>
-       <y>0</y>
-       <width>121</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Record Number</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="Line" name="line">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>680</y>
-      <width>911</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menuBar">
@@ -738,7 +837,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>916</width>
+     <width>908</width>
      <height>22</height>
     </rect>
    </property>
@@ -747,32 +846,134 @@
      <string>Save</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menuSave_Close">
-    <property name="title">
-     <string>Save and Close</string>
-    </property>
-   </widget>
    <widget class="QMenu" name="menuPrint">
     <property name="title">
      <string>Print</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menuClear">
+   <widget class="QMenu" name="menuRecord">
     <property name="title">
-     <string>Clear</string>
+     <string>Record</string>
     </property>
+    <addaction name="actionEdit_Record"/>
+    <addaction name="actionLock_Record"/>
    </widget>
-   <widget class="QMenu" name="menuClose">
+   <widget class="QMenu" name="menuExport">
     <property name="title">
-     <string>Close</string>
+     <string>Export</string>
     </property>
+    <addaction name="actionExport_as_PDF"/>
+    <addaction name="actionExport_as_Word_document"/>
    </widget>
+   <widget class="QMenu" name="menuAssessment">
+    <property name="title">
+     <string>Assessment</string>
+    </property>
+    <widget class="QMenu" name="menuTools">
+     <property name="title">
+      <string>Tools</string>
+     </property>
+     <addaction name="actionBattele"/>
+     <addaction name="actionSensory_2"/>
+     <addaction name="actionPhysiotherapy_2"/>
+     <addaction name="actionBehaviour_2"/>
+     <addaction name="actionSpeech_and_Language"/>
+    </widget>
+    <addaction name="actionResults"/>
+    <addaction name="actionPlan"/>
+    <addaction name="menuTools"/>
+   </widget>
+   <addaction name="menuRecord"/>
    <addaction name="menuSave"/>
-   <addaction name="menuSave_Close"/>
    <addaction name="menuPrint"/>
-   <addaction name="menuClear"/>
-   <addaction name="menuClose"/>
+   <addaction name="menuExport"/>
+   <addaction name="menuAssessment"/>
   </widget>
+  <action name="actionEdit_Record">
+   <property name="text">
+    <string>Edit Record</string>
+   </property>
+  </action>
+  <action name="actionLock_Record">
+   <property name="text">
+    <string>Lock Record</string>
+   </property>
+  </action>
+  <action name="actionExport_as_PDF">
+   <property name="text">
+    <string>Export as PDF</string>
+   </property>
+  </action>
+  <action name="actionExport_as_Word_document">
+   <property name="text">
+    <string>Export as Word document</string>
+   </property>
+  </action>
+  <action name="actionBatelle">
+   <property name="text">
+    <string>Batelle</string>
+   </property>
+  </action>
+  <action name="actionSensory">
+   <property name="text">
+    <string>Sensory</string>
+   </property>
+  </action>
+  <action name="actionOT">
+   <property name="text">
+    <string>OT</string>
+   </property>
+  </action>
+  <action name="actionPhysiotherapy">
+   <property name="text">
+    <string>Physiotherapy</string>
+   </property>
+  </action>
+  <action name="actionBehaviour">
+   <property name="text">
+    <string>Behaviour</string>
+   </property>
+  </action>
+  <action name="actionSpeech_Language">
+   <property name="text">
+    <string>Speech and Language</string>
+   </property>
+  </action>
+  <action name="actionResults">
+   <property name="text">
+    <string>Results</string>
+   </property>
+  </action>
+  <action name="actionPlan">
+   <property name="text">
+    <string>Plan</string>
+   </property>
+  </action>
+  <action name="actionBattele">
+   <property name="text">
+    <string>Battele</string>
+   </property>
+  </action>
+  <action name="actionSensory_2">
+   <property name="text">
+    <string>Sensory</string>
+   </property>
+  </action>
+  <action name="actionPhysiotherapy_2">
+   <property name="text">
+    <string>Physiotherapy</string>
+   </property>
+  </action>
+  <action name="actionBehaviour_2">
+   <property name="text">
+    <string>Behaviour</string>
+   </property>
+  </action>
+  <action name="actionSpeech_and_Language">
+   <property name="text">
+    <string>Speech and Language</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
