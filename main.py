@@ -5,11 +5,10 @@
 
 # Export as pyinstaller main.py -F
 
-hours = 3
+hours = 4
 
 import sys, sqlite3
 import login, landing, student_entry, view_students, report
-import PyQt5
 
 # Display login dialogue
 login.play()
