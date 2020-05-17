@@ -5,11 +5,28 @@
 
 # Export as pyinstaller main.py -F
 
-hours = 4
+hours = 7
 
-import sys, sqlite3
+import sys
+from PyQt5 import QtCore, QtWidgets
 import login, landing, student_entry, view_students, report
 
-# Display login dialogue
-login.play()
+# Define QT5 app
 
+app = QtWidgets.QApplication(sys.argv)
+dialog = QtWidgets.QDialog()
+
+
+# Display login dialogue
+
+logger = login.Login()
+logger.setupUi(dialog)
+dialog.show()
+
+
+
+lander = landing.Ui_MainWindow()
+lander.setupUi(mainWindow)
+# mainWindow.show()
+
+sys.exit(app.exec_())
