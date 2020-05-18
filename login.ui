@@ -37,8 +37,11 @@
    <property name="standardButtons">
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
+   <property name="centerButtons">
+    <bool>false</bool>
+   </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="usernameLabel">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -60,7 +63,7 @@
     <string>Username</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="passwordLabel">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -73,7 +76,7 @@
     <string>Password</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="usernameLine">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -82,11 +85,20 @@
      <height>41</height>
     </rect>
    </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777208</width>
+     <height>16777215</height>
+    </size>
+   </property>
    <property name="inputMask">
-    <string>A</string>
+    <string/>
+   </property>
+   <property name="maxLength">
+    <number>32767</number>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="passwordLine">
    <property name="geometry">
     <rect>
      <x>20</x>
