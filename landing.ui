@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>827</width>
     <height>600</height>
    </rect>
   </property>
@@ -25,28 +25,28 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="registerButton">
        <property name="text">
         <string>Register New Student</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="browseButton">
        <property name="text">
         <string>Browse Students</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="reportButton">
        <property name="text">
         <string>Add Report</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="statsButton">
        <property name="text">
         <string>Statistics</string>
        </property>
@@ -59,19 +59,25 @@
      <rect>
       <x>250</x>
       <y>120</y>
-      <width>541</width>
+      <width>571</width>
       <height>421</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="title">
     <property name="geometry">
      <rect>
       <x>260</x>
       <y>10</y>
-      <width>511</width>
+      <width>561</width>
       <height>101</height>
      </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777212</width>
+      <height>16777211</height>
+     </size>
     </property>
     <property name="font">
      <font>
@@ -81,6 +87,9 @@
     <property name="text">
      <string>Association of Early Intervention for Children with Disability</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -88,7 +97,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>827</width>
      <height>22</height>
     </rect>
    </property>
@@ -96,16 +105,22 @@
     <property name="title">
      <string>Report</string>
     </property>
+    <addaction name="actionAdd_report"/>
+    <addaction name="actionView_reports"/>
    </widget>
    <widget class="QMenu" name="menuRegister">
     <property name="title">
      <string>Register</string>
     </property>
+    <addaction name="actionRegister_new_student"/>
+    <addaction name="actionView_student_database"/>
    </widget>
    <widget class="QMenu" name="menuWindow">
     <property name="title">
      <string>Window</string>
     </property>
+    <addaction name="actionMinimize"/>
+    <addaction name="actionMaximize_window"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -118,6 +133,36 @@
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionMinimize">
+   <property name="text">
+    <string>Minimize window</string>
+   </property>
+  </action>
+  <action name="actionMaximize_window">
+   <property name="text">
+    <string>Maximize window</string>
+   </property>
+  </action>
+  <action name="actionAdd_report">
+   <property name="text">
+    <string>Add report</string>
+   </property>
+  </action>
+  <action name="actionView_reports">
+   <property name="text">
+    <string>View reports</string>
+   </property>
+  </action>
+  <action name="actionRegister_new_student">
+   <property name="text">
+    <string>Register new student</string>
+   </property>
+  </action>
+  <action name="actionView_student_database">
+   <property name="text">
+    <string>View student database</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

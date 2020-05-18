@@ -26,8 +26,9 @@ class Login(QtWidgets.QDialog):
         self.show()
         
         # Check if username/password combo is correct, if it is open landing page
-        if (self.exec_() == QtWidgets.QDialog.Accepted and self.ui.usernameLine.text() == 'admin' and self.ui.passwordLine.text() == 'admin'):
+        if self.exec_() == QtWidgets.QDialog.Accepted and self.ui.usernameLine.text() == 'admin' and self.ui.passwordLine.text() == 'admin':
             self.close()
+            land = Landing()
         else:
             warn = QtWidgets.QMessageBox()
             warn.setIcon(QtWidgets.QMessageBox.Warning)
@@ -36,8 +37,7 @@ class Login(QtWidgets.QDialog):
             warn.setStandardButtons(
                 QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
             warn.exec()
-            self.ui.setupUi(self)
-            self.show()
+            self.__init__()
             
 class Landing(QtWidgets.QDialog):
     def __init__(self):
