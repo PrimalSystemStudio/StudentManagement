@@ -13,7 +13,7 @@ import view_students
 import report
 from PyQt5 import QtWidgets
 
-hours = 8
+hours = 9
 
 
 # Define login dialogue
@@ -28,8 +28,9 @@ class Login(QtWidgets.QDialog):
         if self.exec_() == QtWidgets.QDialog.Accepted:
             if (self.ui.usernameLine.text() == 'admin' and
                     self.ui.passwordLine.text() == 'admin'):
-                main_Ui = Landing()
-                main_Ui.__init__()
+                self.main_Ui = Landing()
+                self.main_Ui.show()
+                print("success")
             elif (self.ui.usernameLine.text() == '' or
                     self.ui.passwordLine.text() == ''):
                 warn = QtWidgets.QMessageBox()
@@ -50,7 +51,6 @@ class Login(QtWidgets.QDialog):
                 warn.buttonClicked.connect(self.reinit)
                 warn.exec_()
         else:
-            print("quit")
             sys.exit()
 
 
@@ -66,28 +66,69 @@ class Landing(QtWidgets.QMainWindow):
         super().__init__()
         self.ui = landing.Ui_Management()
         self.ui.setupUi(self)
-        self.show()
   
-    def about():
-        pass
+    def about(self):
+        print("about button pressed")
     
-    def browse():
-        pass
+    def browse(self):
+        self.viewstudents = ViewStudents()
+        self.viewstudents.show()
+        print("browse button pressed")
+
+    def guide(self):
+        print("guide button pressed")
     
-    def guide():
-        pass
+    def register(self):
+        self.newstudent = NewStudent()
+        self.newstudent.show()
+        print("guide button pressed")
     
-    def register():
-        pass
-    
-    def report():
-        pass
+    def report(self):
+        self.newreport = NewReport()
+        self.newreport.show()
+        print("report button pressed")
         
-    def stats():
+    def stats(self):
+        print("stats button pressed")
+
+class ViewStudents(QtWidgets.QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = view_students.Ui_MainWindow()
+        self.ui.setupUi(self)
+        
+
+class NewStudent(QtWidgets.QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = student_entry.Ui_MainWindow()
+        self.ui.setupUi(self)
+
+
+class NewReport(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = report.Ui_Form()
+        self.ui.setupUi(self)
+        
+class Stats(QtWidgets.QMainWindow):
+    def __init__(self):
+        # Placeholder until UI for stats page is generated
+        pass
+
+class Guide(QtWidgets.QMainWindow):
+    def __init__(self):
+        # Placeholder until UI for stats page is generated
+        pass
+
+class About(QtWidgets.QMainWindow):
+    def __init__(self):
+        # Placeholder until UI for stats page is generated
         pass
 
 # Define QT5 app and launch login dialog
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    Login()
+    start = Landing()
+    start.show()
     app.exec_()
