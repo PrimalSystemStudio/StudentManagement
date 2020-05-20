@@ -5,51 +5,71 @@
 
 # Export as pyinstaller main.py -F
 # Username and password are both "admin"
-
-hours = 7
-
 import sys
-from PyQt5 import QtCore, QtWidgets
-import login, landing, student_entry, view_students, report
+import login
+import landing
+import student_entry
+import view_students
+import report
+from PyQt5 import QtWidgets
 
-# Define QT5 app
+hours = 8
 
-app = QtWidgets.QApplication(sys.argv)
 
 # Define login dialogue
-
 class Login(QtWidgets.QDialog):
     def __init__(self):
         super().__init__()
-        self.ui = login.Ui_Dialog()
+        self.ui = login.Ui_Login()
         self.ui.setupUi(self)
-        self.show()
-        
-        # Check if username/password combo is correct, if it is open landing page
-        if self.exec_() == QtWidgets.QDialog.Accepted and self.ui.usernameLine.text() == 'admin' and self.ui.passwordLine.text() == 'admin':
-            self.close()
-            land = Landing()
+
+        # Check if username/password combo is correct
+        # If it is then open the landing page
+        if self.exec_() == QtWidgets.QDialog.Accepted:
+            if (self.ui.usernameLine.text() == 'admin' and
+                    self.ui.passwordLine.text() == 'admin'):
+                main_Ui = Landing()
+                main_Ui.__init__()
+            elif (self.ui.usernameLine.text() == '' or
+                    self.ui.passwordLine.text() == ''):
+                warn = QtWidgets.QMessageBox()
+                warn.setIcon(QtWidgets.QMessageBox.Warning)
+                warn.setText(
+                    "Please enter a username and password.")
+                warn.setStandardButtons(
+                    QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+                warn.buttonClicked.connect(self.reinit)
+                warn.exec_()
+            else:
+                warn = QtWidgets.QMessageBox()
+                warn.setIcon(QtWidgets.QMessageBox.Warning)
+                warn.setText(
+                   "Username and password combination is incorrect, try again")
+                warn.setStandardButtons(
+                    QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+                warn.buttonClicked.connect(self.reinit)
+                warn.exec_()
         else:
-            warn = QtWidgets.QMessageBox()
-            warn.setIcon(QtWidgets.QMessageBox.Warning)
-            warn.setText(
-               "Username and password combination is incorrect, try again")
-            warn.setStandardButtons(
-                QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
-            warn.exec()
-            self.__init__()
-            
-class Landing(QtWidgets.QDialog):
+            print("quit")
+            sys.exit()
+
+
+    # Reopen dialog if login attempt is unsuccessful
+    def reinit(self, y):
+        print("Button pressed is ", y.text())
+        self.__init__()
+
+
+# Define landing window
+class Landing(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-        self.ui = landing.Ui_MainWindow()
+        self.ui = landing.Ui_Management()
         self.ui.setupUi(self)
-        self.show
-    
-# Display login dialog
-window = Login()
-window.show
+        self.show()
 
-
-
-sys.exit(app.exec_())
+# Define QT5 app and launch login dialog
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    Login()
+    app.exec_()
