@@ -67,6 +67,24 @@ class Landing(QtWidgets.QMainWindow):
         self.ui = landing.Ui_Management()
         self.ui.setupUi(self)
         self.show()
+  
+    def about():
+        pass
+    
+    def browse():
+        pass
+    
+    def guide():
+        pass
+    
+    def register():
+        pass
+    
+    def report():
+        pass
+        
+    def stats():
+        pass
 
 # Define QT5 app and launch login dialog
 if __name__ == "__main__":
