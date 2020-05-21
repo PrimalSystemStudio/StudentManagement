@@ -11,9 +11,9 @@ import landing
 import student_entry
 import view_students
 import report
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtSql
 
-hours = 9
+hours = 12
 
 
 # Define login dialogue
@@ -69,7 +69,7 @@ class Landing(QtWidgets.QMainWindow):
   
     def about(self):
         print("about button pressed")
-    
+
     def browse(self):
         self.viewstudents = ViewStudents()
         self.viewstudents.show()
@@ -96,13 +96,16 @@ class ViewStudents(QtWidgets.QMainWindow):
         super().__init__()
         self.ui = view_students.Ui_MainWindow()
         self.ui.setupUi(self)
-        
+        self.data = QtSql.QSqlDatabase.addDatabase("QSQLITE", "documents/students.db")
+        self.data.open()
+
 
 class NewStudent(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         self.ui = student_entry.Ui_MainWindow()
         self.ui.setupUi(self)
+        
 
 
 class NewReport(QtWidgets.QWidget):
@@ -118,7 +121,7 @@ class Stats(QtWidgets.QMainWindow):
 
 class Guide(QtWidgets.QMainWindow):
     def __init__(self):
-        # Placeholder until UI for stats page is generated
+        # Placeholder until UI for guide page is generated
         pass
 
 class About(QtWidgets.QMainWindow):
@@ -129,6 +132,6 @@ class About(QtWidgets.QMainWindow):
 # Define QT5 app and launch login dialog
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    start = Landing()
+    start = ViewStudents()
     start.show()
     app.exec_()
