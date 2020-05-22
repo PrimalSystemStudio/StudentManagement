@@ -103,31 +103,34 @@ class ViewStudents(QtWidgets.QMainWindow):
         self.data = QtSql.QSqlDatabase.addDatabase("QSQLITE")
         self.data.setDatabaseName("documents/students.db")
         self.data.open()
-        self.data.exec_("SELECT *")
-        self.data.lastError()
+        
+        # Database headers
         self.model = QtSql.QSqlQueryModel()
-        self.model.setQuery("SELECT *")
+        self.model.setQuery("SELECT * FROM student_list")
         self.model.setHeaderData(0, QtCore.Qt.Horizontal, "ID")
         self.model.setHeaderData(1, QtCore.Qt.Horizontal, "Given Names")
         self.model.setHeaderData(2, QtCore.Qt.Horizontal, "Family Name")
         self.model.setHeaderData(3, QtCore.Qt.Horizontal, "Date of Birth")
         self.model.setHeaderData(4, QtCore.Qt.Horizontal, "Birth Place")
         self.model.setHeaderData(5, QtCore.Qt.Horizontal, "Hospital Diagnosis")
-        self.model.setHeaderData(6, QtCore.Qt.Horizontal, "Hospital Name")
         self.model.setHeaderData(7, QtCore.Qt.Horizontal, "Nationality")
         self.model.setHeaderData(8, QtCore.Qt.Horizontal, "Gender")
         self.model.setHeaderData(9, QtCore.Qt.Horizontal, "Primary Caregiver")
-        self.model.setHeaderData(10, QtCore.Qt.Horizontal, "Date of Admission")
-        self.model.setHeaderData(11, QtCore.Qt.Horizontal, "Address")
-        self.model.setHeaderData(12, QtCore.Qt.Horizontal, "Emergency Contact Name")
-        self.model.setHeaderData(13, QtCore.Qt.Horizontal, "Emergency Contact Mobile")
-        self.model.setHeaderData(14, QtCore.Qt.Horizontal, "Emergency Contact Home")
-        self.model.setHeaderData(15, QtCore.Qt.Horizontal, "Emergency Contact Office")
-        self.model.setHeaderData(16, QtCore.Qt.Horizontal, "Relation To Student")
-
+        self.model.setHeaderData(10, QtCore.Qt.Horizontal, "Contact Name")
+        self.model.setHeaderData(11, QtCore.Qt.Horizontal, "Contact Mobile")
+        
         #Show the data in the table
         self.ui.tableView.setModel(self.model)
         self.ui.tableView.show()
+
+    def printList():
+        # Placeholder for print function
+        pass
+
+    def printSelection():
+        # Placeholder for print function
+        pass
+
 
 # Window for inputting data for a new student
 class NewStudent(QtWidgets.QMainWindow):
