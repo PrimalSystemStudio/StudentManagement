@@ -6,31 +6,66 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>965</width>
-    <height>907</height>
+    <width>1106</width>
+    <height>863</height>
    </rect>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777209</width>
+    <height>16777215</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>View Students</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableView" name="tableView">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>961</width>
-      <height>911</height>
-     </rect>
-    </property>
-   </widget>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QTableView" name="tableView">
+      <property name="toolTipDuration">
+       <number>-2</number>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::ExtendedSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>150</number>
+      </attribute>
+      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>true</bool>
+      </attribute>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>965</width>
+     <width>1106</width>
      <height>22</height>
     </rect>
    </property>
@@ -38,25 +73,10 @@
     <property name="title">
      <string>Print</string>
     </property>
-   </widget>
-   <widget class="QMenu" name="menuEdit_Record">
-    <property name="title">
-     <string>View Record</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuView">
-    <property name="title">
-     <string>View</string>
-    </property>
-    <addaction name="actionA_to_Z"/>
-    <addaction name="actionZ_to_A"/>
-    <addaction name="actionDate_of_Birth"/>
-    <addaction name="actionRecord_First_to_Last"/>
-    <addaction name="actionRecord_Last_to_First"/>
+    <addaction name="actionPrint_selected"/>
+    <addaction name="actionPrint_full_list"/>
    </widget>
    <addaction name="menuPrint"/>
-   <addaction name="menuView"/>
-   <addaction name="menuEdit_Record"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionA_to_Z">
@@ -84,7 +104,54 @@
     <string>Record Last to First</string>
    </property>
   </action>
+  <action name="actionPrint_full_list">
+   <property name="text">
+    <string>Print list</string>
+   </property>
+  </action>
+  <action name="actionPrint_selected">
+   <property name="text">
+    <string>Print selected records</string>
+   </property>
+  </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionPrint_full_list</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>printList()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>789</x>
+     <y>459</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>789</x>
+     <y>459</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionPrint_selected</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>printSelection()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>789</x>
+     <y>459</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>printList()</slot>
+  <slot>printSelection()</slot>
+ </slots>
 </ui>
