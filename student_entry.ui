@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>908</width>
-    <height>462</height>
+    <width>1012</width>
+    <height>494</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -17,352 +17,256 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>New Student</string>
+   <string>Student Information</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="gridLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>30</y>
-      <width>901</width>
-      <height>167</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0">
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_5">
-       <property name="text">
-        <string>Birth Place</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="5">
-      <widget class="QLineEdit" name="lineEdit_10"/>
-     </item>
-     <item row="3" column="4">
-      <widget class="QLabel" name="label_10">
-       <property name="text">
-        <string>Date of Admission</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEdit_11"/>
-     </item>
-     <item row="3" column="3">
-      <widget class="QLineEdit" name="lineEdit_8"/>
-     </item>
-     <item row="0" column="4">
-      <widget class="QLabel" name="label_8">
-       <property name="text">
-        <string>Family Name</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="5">
-      <widget class="QDateEdit" name="dateEdit">
-       <property name="calendarPopup">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_5"/>
-     </item>
-     <item row="3" column="2">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Hospital Name</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QLineEdit" name="lineEdit_2"/>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLineEdit" name="lineEdit_7"/>
-     </item>
-     <item row="4" column="3">
-      <widget class="QRadioButton" name="radioButton_2">
-       <property name="text">
-        <string>Male</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="4">
-      <widget class="QLabel" name="label_7">
-       <property name="text">
-        <string>Date of Birth</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLineEdit" name="lineEdit_6"/>
-     </item>
-     <item row="1" column="2">
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string>Hospital Diagnosis</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Nationality</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Name</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEdit_3"/>
-     </item>
-     <item row="3" column="5">
-      <widget class="QDateEdit" name="dateEdit_2">
-       <property name="calendarPopup">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="3">
-      <widget class="QRadioButton" name="radioButton">
-       <property name="text">
-        <string>Female</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="4">
-      <widget class="QLabel" name="label_52">
-       <property name="text">
-        <string>Primary Caregiver</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="5">
-      <widget class="QLineEdit" name="lineEdit"/>
-     </item>
-     <item row="2" column="3">
-      <widget class="QFrame" name="frame">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QGraphicsView" name="graphicsView">
-        <property name="geometry">
-         <rect>
-          <x>860</x>
-          <y>0</y>
-          <width>31</width>
-          <height>20</height>
-         </rect>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label_studentsDetails">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777213</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Student Details</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="student_details" rowstretch="0,0,0,0">
+      <item row="1" column="5">
+       <widget class="QDateEdit" name="dateBirth">
+        <property name="calendarPopup">
+         <bool>true</bool>
         </property>
        </widget>
-       <widget class="QLabel" name="label_41">
-        <property name="geometry">
-         <rect>
-          <x>740</x>
-          <y>0</y>
-          <width>121</width>
-          <height>17</height>
-         </rect>
-        </property>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_diagnosis">
         <property name="text">
-         <string>Record Number</string>
+         <string>Hospital Diagnosis</string>
         </property>
        </widget>
-      </widget>
-     </item>
-     <item row="4" column="2">
-      <widget class="QLabel" name="label_11">
-       <property name="text">
-        <string>Gender</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>111</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Student Details</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_12">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>210</y>
-      <width>111</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Address Details</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="gridLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>230</y>
-      <width>901</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_15">
-       <property name="text">
-        <string>Wallaya</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QLabel" name="label_19">
-       <property name="text">
-        <string>Lane No.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="4">
-      <widget class="QLabel" name="label_20">
-       <property name="text">
-        <string>House No.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QLineEdit" name="lineEdit_15"/>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEdit_9"/>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_14"/>
-     </item>
-     <item row="0" column="5">
-      <widget class="QLineEdit" name="lineEdit_13"/>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="label_16">
-       <property name="text">
-        <string>Village</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLineEdit" name="lineEdit_12"/>
-     </item>
-     <item row="0" column="4">
-      <widget class="QLabel" name="label_17">
-       <property name="text">
-        <string>Block No.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="5">
-      <widget class="QLineEdit" name="lineEdit_16"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_18">
-       <property name="text">
-        <string>Street</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QLabel" name="label_13">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>320</y>
-      <width>161</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Emergency Contact</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="gridLayoutWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>340</y>
-      <width>901</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout_3">
-     <item row="1" column="4">
-      <widget class="QLabel" name="label_25">
-       <property name="text">
-        <string>Office Phone No.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_23">
-       <property name="text">
-        <string>Mobile No.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_19"/>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEdit_17"/>
-     </item>
-     <item row="1" column="3">
-      <widget class="QLineEdit" name="lineEdit_20"/>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="label_22">
-       <property name="text">
-        <string>Relation to student</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QLabel" name="label_24">
-       <property name="text">
-        <string>Home Phone No.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_21">
-       <property name="text">
-        <string>Name</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLineEdit" name="lineEdit_18"/>
-     </item>
-     <item row="1" column="5">
-      <widget class="QLineEdit" name="lineEdit_21"/>
-     </item>
-    </layout>
-   </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QLabel" name="label_family">
+        <property name="text">
+         <string>Family Name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_name">
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLineEdit" name="lineEdit_name2"/>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLineEdit" name="lineEdit_diagnosis"/>
+      </item>
+      <item row="1" column="4">
+       <widget class="QLabel" name="label_birthdate">
+        <property name="text">
+         <string>Date of Birth</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLineEdit" name="lineEdit_name3"/>
+      </item>
+      <item row="0" column="5">
+       <widget class="QLineEdit" name="lineEdit_family"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_birthplace">
+        <property name="text">
+         <string>Birth Place</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEdit_birthplace"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_nationality">
+        <property name="text">
+         <string>Nationality</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="label_gender">
+        <property name="text">
+         <string>Gender</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="lineEdit_nationality"/>
+      </item>
+      <item row="3" column="3">
+       <widget class="QRadioButton" name="radioMale">
+        <property name="text">
+         <string>Male</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_name1"/>
+      </item>
+      <item row="2" column="5">
+       <widget class="QLineEdit" name="lineEdit_caregiver"/>
+      </item>
+      <item row="2" column="4">
+       <widget class="QLabel" name="label_caregiver">
+        <property name="text">
+         <string>Primary Caregiver</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QRadioButton" name="radioFemale">
+        <property name="text">
+         <string>Female</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_addressDetails">
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Address Details</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="address_details">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_wallaya">
+        <property name="text">
+         <string>Wallaya</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_lane">
+        <property name="text">
+         <string>Lane No.</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QLabel" name="label_house">
+        <property name="text">
+         <string>House No.</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLineEdit" name="lineEdit_lane"/>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_wallaya"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEdit_street"/>
+      </item>
+      <item row="0" column="5">
+       <widget class="QLineEdit" name="lineEdit_block"/>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_village">
+        <property name="text">
+         <string>Village</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLineEdit" name="lineEdit_village"/>
+      </item>
+      <item row="0" column="4">
+       <widget class="QLabel" name="label_block">
+        <property name="text">
+         <string>Block No.</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="5">
+       <widget class="QLineEdit" name="lineEdit_house"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_street">
+        <property name="text">
+         <string>Street</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_contact">
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Emergency Contact</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="emergency_contact">
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_contactName"/>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_contactRelation">
+        <property name="text">
+         <string>Relation to student</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_contactName">
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLineEdit" name="lineEdit_contactRelation"/>
+      </item>
+      <item row="0" column="5">
+       <widget class="QLineEdit" name="lineEdit_contactMobile"/>
+      </item>
+      <item row="0" column="4">
+       <widget class="QLabel" name="label_contactMobile">
+        <property name="text">
+         <string>Mobile No.</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menuBar">
@@ -370,26 +274,22 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>908</width>
+     <width>1012</width>
      <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSave">
     <property name="title">
-     <string>Save</string>
+     <string>Record</string>
     </property>
+    <addaction name="actionSave_Record"/>
+    <addaction name="actionLock"/>
+    <addaction name="actionEdit"/>
    </widget>
    <widget class="QMenu" name="menuPrint">
     <property name="title">
      <string>Print</string>
     </property>
-   </widget>
-   <widget class="QMenu" name="menuRecord">
-    <property name="title">
-     <string>Record</string>
-    </property>
-    <addaction name="actionEdit_Record"/>
-    <addaction name="actionLock_Record"/>
    </widget>
    <widget class="QMenu" name="menuExport">
     <property name="title">
@@ -408,15 +308,14 @@
      </property>
      <addaction name="actionBattele"/>
      <addaction name="actionSensory_2"/>
-     <addaction name="actionPhysiotherapy_2"/>
-     <addaction name="actionBehaviour_2"/>
-     <addaction name="actionSpeech_and_Language"/>
+     <addaction name="actionPhysio"/>
+     <addaction name="actionBehavior"/>
+     <addaction name="actionSpeech"/>
     </widget>
     <addaction name="actionResults"/>
     <addaction name="actionPlan"/>
     <addaction name="menuTools"/>
    </widget>
-   <addaction name="menuRecord"/>
    <addaction name="menuSave"/>
    <addaction name="menuPrint"/>
    <addaction name="menuExport"/>
@@ -492,22 +391,213 @@
     <string>Sensory</string>
    </property>
   </action>
-  <action name="actionPhysiotherapy_2">
+  <action name="actionPhysio">
    <property name="text">
     <string>Physiotherapy</string>
    </property>
   </action>
-  <action name="actionBehaviour_2">
+  <action name="actionBehavior">
    <property name="text">
     <string>Behaviour</string>
    </property>
   </action>
-  <action name="actionSpeech_and_Language">
+  <action name="actionSpeech">
    <property name="text">
     <string>Speech and Language</string>
    </property>
   </action>
+  <action name="actionSave_Record">
+   <property name="text">
+    <string>Save Record</string>
+   </property>
+  </action>
+  <action name="actionLock">
+   <property name="text">
+    <string>Lock Record</string>
+   </property>
+  </action>
+  <action name="actionEdit">
+   <property name="text">
+    <string>Edit Record</string>
+   </property>
+  </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionSave_Record</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>saveRecord()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>85</x>
+     <y>45</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>505</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionExport_as_PDF</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>exportPDF()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>505</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionExport_as_Word_document</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>exportDocx()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>505</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionBattele</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>assessBattele()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>505</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionBehavior</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>assessBehaviour()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>505</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSensory_2</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>assessSensory()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>505</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionPhysio</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>assessPhysio()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>505</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSpeech</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>assessSpeech()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>505</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionEdit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>editRecord()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>505</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionLock</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>lockRecord()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>505</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>saveRecord()</slot>
+  <slot>printStudent()</slot>
+  <slot>exportPDF()</slot>
+  <slot>checkResults()</slot>
+  <slot>viewPlan()</slot>
+  <slot>assessBattele()</slot>
+  <slot>assessSensory()</slot>
+  <slot>assessSpeech()</slot>
+  <slot>assessBehaviour()</slot>
+  <slot>assessPhysio()</slot>
+  <slot>exportDocx()</slot>
+  <slot>editRecord()</slot>
+  <slot>lockRecord()</slot>
+ </slots>
 </ui>
