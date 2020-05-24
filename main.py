@@ -14,7 +14,7 @@ import view_students
 import report
 from PyQt5 import QtCore, QtWidgets, QtSql
 
-hours = 12
+hours = 15
 
 
 # Define login dialogue
@@ -79,7 +79,7 @@ class Landing(QtWidgets.QMainWindow):
         print("guide button pressed")
 
     def register(self):
-        self.newstudent = NewStudent()
+        self.newstudent = Student()
         self.newstudent.show()
         print("guide button pressed")
 
@@ -98,12 +98,12 @@ class ViewStudents(QtWidgets.QMainWindow):
         super().__init__()
         self.ui = view_students.Ui_MainWindow()
         self.ui.setupUi(self)
-        
+
         # Define the database
         self.data = QtSql.QSqlDatabase.addDatabase("QSQLITE")
         self.data.setDatabaseName("documents/students.db")
         self.data.open()
-        
+
         # Database headers
         self.model = QtSql.QSqlQueryModel()
         self.model.setQuery("SELECT * FROM student_list")
@@ -118,8 +118,8 @@ class ViewStudents(QtWidgets.QMainWindow):
         self.model.setHeaderData(9, QtCore.Qt.Horizontal, "Primary Caregiver")
         self.model.setHeaderData(10, QtCore.Qt.Horizontal, "Contact Name")
         self.model.setHeaderData(11, QtCore.Qt.Horizontal, "Contact Mobile")
-        
-        #Show the data in the table
+
+        # Show the data in the table
         self.ui.tableView.setModel(self.model)
         self.ui.tableView.show()
 
@@ -132,13 +132,56 @@ class ViewStudents(QtWidgets.QMainWindow):
         pass
 
 
-# Window for inputting data for a new student
-class NewStudent(QtWidgets.QMainWindow):
+# Window for inputing data for a student
+class Student(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         self.ui = student_entry.Ui_MainWindow()
         self.ui.setupUi(self)
+        
+        # Define the database
+        self.data = QtSql.QSqlDatabase.addDatabase("QSQLITE")
+        self.data.setDatabaseName("documents/students.db")
+        self.data.open()
+        
+        # Here an 'if else' statement should be placed if a student was 
 
+    def saveRecord():
+        pass
+
+    def printStudents():
+        # Placeholder for print function
+        pass
+
+    def exportPDF():
+        pass
+
+    def exportDocx():
+        pass
+
+    def assessBattele():
+        pass
+
+    def assessBehaviour():
+        # Placeholder for behavioural assessment
+        pass
+
+    def assessPhysio():
+        # Placeholder for physiotherapy assessment
+        pass
+
+    def assessSensory():
+        # Placeholder for sensory assessment
+        pass
+        
+    def assessSpeech():
+        # Placeholder for speech assessment
+        pass
+
+class Battele():
+    def __init__(self):
+        super().__init__()
+    
 
 class NewReport(QtWidgets.QWidget):
     def __init__(self):
@@ -168,6 +211,6 @@ class About(QtWidgets.QMainWindow):
 # Define QT5 app and launch login dialog
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    start = ViewStudents()
+    start = Student()
     start.show()
     app.exec_()
