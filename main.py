@@ -15,7 +15,7 @@ import report
 from PyQt5 import QtCore, QtWidgets, QtSql
 
 # How many hours been spent on this project (for personal use)
-hours = 20
+hours = 23
 
 
 # Define login dialogue
@@ -32,7 +32,6 @@ class Login(QtWidgets.QDialog):
                     self.ui.passwordLine.text() == 'admin'):
                 self.main_Ui = Landing()
                 self.main_Ui.show()
-                print("success")
             elif (self.ui.usernameLine.text() == '' or
                     self.ui.passwordLine.text() == ''):
                 warn = QtWidgets.QMessageBox()
@@ -140,6 +139,10 @@ class NewStudent(QtWidgets.QMainWindow):
         self.ui = student_entry.Ui_MainWindow()
         self.ui.setupUi(self)
         
+        # Record starts off editable
+        # "Edit record" is greyed out until the record is locked
+        self.ui.actionEdit.setEnabled(False)
+        
         # Define the database
         self.data = QtSql.QSqlDatabase.addDatabase("QSQLITE")
         self.data.setDatabaseName("documents/students.db")
@@ -191,15 +194,57 @@ class NewStudent(QtWidgets.QMainWindow):
             
             # Insert new record into the table
             self.data.table.insertRecord(-1, self.data.table.newRecord)
+            self.hide()
 
-    def editRecord():
-        # Placeholder to unlock record
-        
-        pass
+    def editRecord(self):
+        # Allows text to be edited
+        if self.ui.actionEdit.isEnabled() == True:
+            self.ui.lineEdit_birthplace.setReadOnly(False)
+            self.ui.lineEdit_caregiver.setReadOnly(False)
+            self.ui.lineEdit_diagnosis.setReadOnly(False)
+            self.ui.lineEdit_family.setReadOnly(False)
+            self.ui.lineEdit_name1.setReadOnly(False)
+            self.ui.lineEdit_name2.setReadOnly(False)
+            self.ui.lineEdit_name3.setReadOnly(False)
+            self.ui.lineEdit_nationality.setReadOnly(False)
+            self.ui.radioFemale.setEnabled(True)
+            self.ui.radioMale.setEnabled(True)
+            self.ui.lineEdit_block.setReadOnly(False)
+            self.ui.lineEdit_house.setReadOnly(False)
+            self.ui.lineEdit_lane.setReadOnly(False)
+            self.ui.lineEdit_street.setReadOnly(False)
+            self.ui.lineEdit_village.setReadOnly(False)
+            self.ui.lineEdit_wallaya.setReadOnly(False)
+            self.ui.lineEdit_contactMobile.setReadOnly(False)
+            self.ui.lineEdit_contactName.setReadOnly(False)
+            self.ui.lineEdit_contactRelation.setReadOnly(False)
+            self.ui.actionLock.setEnabled(True)
+            self.ui.actionEdit.setEnabled(False)
 
-    def lockRecord():
-        # Placeholder to lock record
-        pass
+    def lockRecord(self):
+        # Stops text from being edited
+        if self.ui.actionLock.isEnabled() == True:
+            self.ui.lineEdit_birthplace.setReadOnly(True)
+            self.ui.lineEdit_caregiver.setReadOnly(True)
+            self.ui.lineEdit_diagnosis.setReadOnly(True)
+            self.ui.lineEdit_family.setReadOnly(True)
+            self.ui.lineEdit_name1.setReadOnly(True)
+            self.ui.lineEdit_name2.setReadOnly(True)
+            self.ui.lineEdit_name3.setReadOnly(True)
+            self.ui.lineEdit_nationality.setReadOnly(True)
+            self.ui.radioFemale.setEnabled(False)
+            self.ui.radioMale.setEnabled(False)
+            self.ui.lineEdit_block.setReadOnly(True)
+            self.ui.lineEdit_house.setReadOnly(True)
+            self.ui.lineEdit_lane.setReadOnly(True)
+            self.ui.lineEdit_street.setReadOnly(True)
+            self.ui.lineEdit_village.setReadOnly(True)
+            self.ui.lineEdit_wallaya.setReadOnly(True)
+            self.ui.lineEdit_contactMobile.setReadOnly(True)
+            self.ui.lineEdit_contactName.setReadOnly(True)
+            self.ui.lineEdit_contactRelation.setReadOnly(True)
+            self.ui.actionEdit.setEnabled(True)
+            self.ui.actionLock.setEnabled(False)
 
     def printStudents():
         # Placeholder for print function
@@ -320,6 +365,6 @@ class About(QtWidgets.QMainWindow):
 # Define QT5 app and launch login dialog
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    start = NewStudent()
-    start.show()
+    start = Login()
+    #start.show()
     app.exec_()
