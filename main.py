@@ -14,7 +14,8 @@ import view_students
 import report
 from PyQt5 import QtCore, QtWidgets, QtSql
 
-hours = 15
+# How many hours been spent on this project (for personal use)
+hours = 20
 
 
 # Define login dialogue
@@ -79,7 +80,7 @@ class Landing(QtWidgets.QMainWindow):
         print("guide button pressed")
 
     def register(self):
-        self.newstudent = Student()
+        self.newstudent = NewStudent()
         self.newstudent.show()
         print("guide button pressed")
 
@@ -132,8 +133,8 @@ class ViewStudents(QtWidgets.QMainWindow):
         pass
 
 
-# Window for inputing data for a student
-class Student(QtWidgets.QMainWindow):
+# Window for inputing data for a new student
+class NewStudent(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         self.ui = student_entry.Ui_MainWindow()
@@ -143,10 +144,61 @@ class Student(QtWidgets.QMainWindow):
         self.data = QtSql.QSqlDatabase.addDatabase("QSQLITE")
         self.data.setDatabaseName("documents/students.db")
         self.data.open()
-        
-        # Here an 'if else' statement should be placed if a student was 
+        self.data.table = QtSql.QSqlTableModel()
+        self.data.table.setTable('student_list')
+        self.data.table.select()
 
-    def saveRecord():
+    def saveRecord(self):      
+        if (self.ui.lineEdit_name1.text() == '' or 
+                self.ui.lineEdit_name1.text() == ' ' or
+                self.ui.lineEdit_family.text() == '' or
+                self.ui.lineEdit_family.text() == ' '):
+            warn = QtWidgets.QMessageBox()
+            warn.setIcon(QtWidgets.QMessageBox.Warning)
+            warn.setText(
+               "Student cannot have no first or last name")
+            warn.setStandardButtons(
+                QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+            warn.exec_()
+        else:
+            # Find the last ID in the table
+            self.data.table.last_id = QtSql.QSqlQuery("SELECT MAX(ID) FROM student_list")
+            self.data.table.last_id.last()
+
+            # Get info entered and put into a new record
+            self.data.table.newRecord = self.data.table.primaryValues(0)
+            self.data.table.newRecord.setValue(0, self.data.table.last_id.value(0) + 1)
+            self.data.table.newRecord.setValue(
+                1, self.ui.lineEdit_name1.text() +
+                " " + self.ui.lineEdit_name2.text() +
+                " " + self.ui.lineEdit_name3.text())
+            self.data.table.newRecord.setValue(2, self.ui.lineEdit_family.text())
+            self.birthdate = self.ui.dateBirth.dateTime()
+            self.data.table.newRecord.setValue(3,
+                self.ui.dateBirth.textFromDateTime(self.birthdate))
+            self.data.table.newRecord.setValue(4, self.ui.lineEdit_birthplace.text())
+            self.data.table.newRecord.setValue(5, self.ui.lineEdit_diagnosis.text())
+            self.data.table.newRecord.setValue(6, self.ui.lineEdit_nationality.text())
+
+            if self.ui.radioFemale.isChecked():
+                self.data.table.newRecord.setValue(7, "Female")
+            elif self.ui.radioMale.isChecked():
+                self.data.table.newRecord.setValue(7, "Male")
+
+            self.data.table.newRecord.setValue(8, self.ui.lineEdit_contactRelation.text())
+            self.data.table.newRecord.setValue(9, self.ui.lineEdit_contactName.text())
+            self.data.table.newRecord.setValue(10, self.ui.lineEdit_contactMobile.text())
+            
+            # Insert new record into the table
+            self.data.table.insertRecord(-1, self.data.table.newRecord)
+
+    def editRecord():
+        # Placeholder to unlock record
+        
+        pass
+
+    def lockRecord():
+        # Placeholder to lock record
         pass
 
     def printStudents():
@@ -178,9 +230,66 @@ class Student(QtWidgets.QMainWindow):
         # Placeholder for speech assessment
         pass
 
+
+# Window for editing data for a new student
+class Student(QtWidgets.QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = student_entry.Ui_MainWindow()
+        self.ui.setupUi(self)
+        
+        # Define the database
+        self.data = QtSql.QSqlDatabase.addDatabase("QSQLITE")
+        self.data.setDatabaseName("documents/students.db")
+        self.data.open()
+        
+    def saveRecord():
+        # Placeholder to save record
+        pass
+
+    def editRecord():
+        # Placeholder to unlock record
+        pass
+
+    def lockRecord():
+        # Placeholder to lock record
+        pass
+
+    def printStudents():
+        # Placeholder for print function
+        pass
+
+    def exportPDF():
+        pass
+
+    def exportDocx():
+        pass
+
+    def assessBattele():
+        pass
+
+    def assessBehaviour():
+        # Placeholder for behavioural assessment
+        pass
+
+    def assessPhysio():
+        # Placeholder for physiotherapy assessment
+        pass
+
+    def assessSensory():
+        # Placeholder for sensory assessment
+        pass
+        
+    def assessSpeech():
+        # Placeholder for speech assessment
+        pass
+
+
 class Battele():
     def __init__(self):
         super().__init__()
+        # Placeholder until therapy section is generated
+        pass
     
 
 class NewReport(QtWidgets.QWidget):
@@ -211,6 +320,6 @@ class About(QtWidgets.QMainWindow):
 # Define QT5 app and launch login dialog
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    start = Student()
+    start = NewStudent()
     start.show()
     app.exec_()
