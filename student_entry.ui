@@ -313,7 +313,7 @@
       <string>Tools</string>
      </property>
      <addaction name="actionBattele"/>
-     <addaction name="actionSensory_2"/>
+     <addaction name="actionSensory"/>
      <addaction name="actionPhysio"/>
      <addaction name="actionBehavior"/>
      <addaction name="actionSpeech"/>
@@ -327,16 +327,6 @@
    <addaction name="menuExport"/>
    <addaction name="menuAssessment"/>
   </widget>
-  <action name="actionEdit_Record">
-   <property name="text">
-    <string>Edit Record</string>
-   </property>
-  </action>
-  <action name="actionLock_Record">
-   <property name="text">
-    <string>Lock Record</string>
-   </property>
-  </action>
   <action name="actionExport_as_PDF">
    <property name="text">
     <string>Export as PDF</string>
@@ -347,34 +337,9 @@
     <string>Export as Word document</string>
    </property>
   </action>
-  <action name="actionBatelle">
-   <property name="text">
-    <string>Batelle</string>
-   </property>
-  </action>
   <action name="actionSensory">
    <property name="text">
     <string>Sensory</string>
-   </property>
-  </action>
-  <action name="actionOT">
-   <property name="text">
-    <string>OT</string>
-   </property>
-  </action>
-  <action name="actionPhysiotherapy">
-   <property name="text">
-    <string>Physiotherapy</string>
-   </property>
-  </action>
-  <action name="actionBehaviour">
-   <property name="text">
-    <string>Behaviour</string>
-   </property>
-  </action>
-  <action name="actionSpeech_Language">
-   <property name="text">
-    <string>Speech and Language</string>
    </property>
   </action>
   <action name="actionResults">
@@ -390,11 +355,6 @@
   <action name="actionBattele">
    <property name="text">
     <string>Battele</string>
-   </property>
-  </action>
-  <action name="actionSensory_2">
-   <property name="text">
-    <string>Sensory</string>
    </property>
   </action>
   <action name="actionPhysio">
@@ -505,22 +465,6 @@
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>assessBehaviour()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>505</x>
-     <y>246</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionSensory_2</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>assessSensory()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
