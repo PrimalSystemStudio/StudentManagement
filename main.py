@@ -103,33 +103,41 @@ class ViewStudents(QtWidgets.QMainWindow):
         self.data = QtSql.QSqlDatabase.addDatabase("QSQLITE")
         self.data.setDatabaseName("documents/students.db")
         self.data.open()
+        self.data.table = QtSql.QSqlTableModel()
+        self.data.table.setTable('student_list')
+        self.data.table.select()
 
         # Database headers
-        self.model = QtSql.QSqlQueryModel()
-        self.model.setQuery("SELECT * FROM student_list")
-        self.model.setHeaderData(0, QtCore.Qt.Horizontal, "ID")
-        self.model.setHeaderData(1, QtCore.Qt.Horizontal, "Given Names")
-        self.model.setHeaderData(2, QtCore.Qt.Horizontal, "Family Name")
-        self.model.setHeaderData(3, QtCore.Qt.Horizontal, "Date of Birth")
-        self.model.setHeaderData(4, QtCore.Qt.Horizontal, "Birth Place")
-        self.model.setHeaderData(5, QtCore.Qt.Horizontal, "Hospital Diagnosis")
-        self.model.setHeaderData(7, QtCore.Qt.Horizontal, "Nationality")
-        self.model.setHeaderData(8, QtCore.Qt.Horizontal, "Gender")
-        self.model.setHeaderData(9, QtCore.Qt.Horizontal, "Primary Caregiver")
-        self.model.setHeaderData(10, QtCore.Qt.Horizontal, "Contact Name")
-        self.model.setHeaderData(11, QtCore.Qt.Horizontal, "Contact Mobile")
+        self.data.table.setHeaderData(0, QtCore.Qt.Horizontal, "ID")
+        self.data.table.setHeaderData(1, QtCore.Qt.Horizontal, "Given Names")
+        self.data.table.setHeaderData(2, QtCore.Qt.Horizontal, "Family Name")
+        self.data.table.setHeaderData(3, QtCore.Qt.Horizontal, "Date of Birth")
+        self.data.table.setHeaderData(4, QtCore.Qt.Horizontal, "Birth Place")
+        self.data.table.setHeaderData(5, QtCore.Qt.Horizontal, "Hospital Diagnosis")
+        self.data.table.setHeaderData(7, QtCore.Qt.Horizontal, "Nationality")
+        self.data.table.setHeaderData(8, QtCore.Qt.Horizontal, "Gender")
+        self.data.table.setHeaderData(9, QtCore.Qt.Horizontal, "Primary Caregiver")
+        self.data.table.setHeaderData(10, QtCore.Qt.Horizontal, "Contact Name")
+        self.data.table.setHeaderData(11, QtCore.Qt.Horizontal, "Contact Mobile")
 
         # Show the data in the table
-        self.ui.tableView.setModel(self.model)
+        self.ui.tableView.setModel(self.data.table)
         self.ui.tableView.show()
 
-    def printList():
+    def printList(self):
         # Placeholder for print function
         pass
 
-    def printSelection():
+    def printSelection(self):
         # Placeholder for print function
         pass
+        
+    def contextMenu(self):
+        # Shows on right click
+        self.clickMenu = QtWidgets.QMenu()
+        self.clickMenu.addAction(self.ui.actionDelete_Entry)
+        self.clickMenu.addAction(self.ui.actionEdit_Entry)
+        self.clickMenu.addAction(self.ui.actionDuplicate_Entry)
 
 
 # Window for inputing data for a new student
@@ -251,12 +259,15 @@ class NewStudent(QtWidgets.QMainWindow):
         pass
 
     def exportPDF():
+        # Placeholder for PDF exporting
         pass
 
     def exportDocx():
+        # Placeholder for .docx exporting
         pass
 
     def assessBattele():
+        # Placeholder for behavioural assessment
         pass
 
     def assessBehaviour():
@@ -288,40 +299,87 @@ class Student(QtWidgets.QMainWindow):
         self.data.setDatabaseName("documents/students.db")
         self.data.open()
         
-    def saveRecord():
+        # Record starts off locked
+        # "Lock record" is greyed out until the record is locked
+        self.ui.actionLock.setEnabled(False)
+        
+    def saveRecord(self):
         # Placeholder to save record
         pass
 
-    def editRecord():
-        # Placeholder to unlock record
-        pass
+    def editRecord(self):
+        # Allows text to be edited
+        if self.ui.actionEdit.isEnabled() == True:
+            self.ui.lineEdit_birthplace.setReadOnly(False)
+            self.ui.lineEdit_caregiver.setReadOnly(False)
+            self.ui.lineEdit_diagnosis.setReadOnly(False)
+            self.ui.lineEdit_family.setReadOnly(False)
+            self.ui.lineEdit_name1.setReadOnly(False)
+            self.ui.lineEdit_name2.setReadOnly(False)
+            self.ui.lineEdit_name3.setReadOnly(False)
+            self.ui.lineEdit_nationality.setReadOnly(False)
+            self.ui.radioFemale.setEnabled(True)
+            self.ui.radioMale.setEnabled(True)
+            self.ui.lineEdit_block.setReadOnly(False)
+            self.ui.lineEdit_house.setReadOnly(False)
+            self.ui.lineEdit_lane.setReadOnly(False)
+            self.ui.lineEdit_street.setReadOnly(False)
+            self.ui.lineEdit_village.setReadOnly(False)
+            self.ui.lineEdit_wallaya.setReadOnly(False)
+            self.ui.lineEdit_contactMobile.setReadOnly(False)
+            self.ui.lineEdit_contactName.setReadOnly(False)
+            self.ui.lineEdit_contactRelation.setReadOnly(False)
+            self.ui.actionLock.setEnabled(True)
+            self.ui.actionEdit.setEnabled(False)
 
-    def lockRecord():
-        # Placeholder to lock record
-        pass
+    def lockRecord(self):
+        # Stops text from being edited
+        if self.ui.actionLock.isEnabled() == True:
+            self.ui.lineEdit_birthplace.setReadOnly(True)
+            self.ui.lineEdit_caregiver.setReadOnly(True)
+            self.ui.lineEdit_diagnosis.setReadOnly(True)
+            self.ui.lineEdit_family.setReadOnly(True)
+            self.ui.lineEdit_name1.setReadOnly(True)
+            self.ui.lineEdit_name2.setReadOnly(True)
+            self.ui.lineEdit_name3.setReadOnly(True)
+            self.ui.lineEdit_nationality.setReadOnly(True)
+            self.ui.radioFemale.setEnabled(False)
+            self.ui.radioMale.setEnabled(False)
+            self.ui.lineEdit_block.setReadOnly(True)
+            self.ui.lineEdit_house.setReadOnly(True)
+            self.ui.lineEdit_lane.setReadOnly(True)
+            self.ui.lineEdit_street.setReadOnly(True)
+            self.ui.lineEdit_village.setReadOnly(True)
+            self.ui.lineEdit_wallaya.setReadOnly(True)
+            self.ui.lineEdit_contactMobile.setReadOnly(True)
+            self.ui.lineEdit_contactName.setReadOnly(True)
+            self.ui.lineEdit_contactRelation.setReadOnly(True)
+            self.ui.actionEdit.setEnabled(True)
+            self.ui.actionLock.setEnabled(False)
 
-    def printStudents():
+
+    def printStudents(self):
         # Placeholder for print function
         pass
 
-    def exportPDF():
+    def exportPDF(self):
         pass
 
-    def exportDocx():
+    def exportDocx(self):
         pass
 
-    def assessBattele():
+    def assessBattele(self):
         pass
 
-    def assessBehaviour():
+    def assessBehaviour(self):
         # Placeholder for behavioural assessment
         pass
 
-    def assessPhysio():
+    def assessPhysio(self):
         # Placeholder for physiotherapy assessment
         pass
 
-    def assessSensory():
+    def assessSensory(self):
         # Placeholder for sensory assessment
         pass
         
@@ -365,6 +423,6 @@ class About(QtWidgets.QMainWindow):
 # Define QT5 app and launch login dialog
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    start = Login()
-    #start.show()
+    start = ViewStudents()
+    start.show()
     app.exec_()
