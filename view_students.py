@@ -20,10 +20,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.tableView = QtWidgets.QTableView(self.centralwidget)
-        self.tableView.setToolTipDuration(-2)
+        self.tableView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.tableView.setAcceptDrops(False)
+        self.tableView.setToolTipDuration(2)
         self.tableView.setStyleSheet("")
         self.tableView.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
-        self.tableView.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.tableView.setAutoScroll(False)
+        self.tableView.setEditTriggers(QtWidgets.QAbstractItemView.DoubleClicked)
         self.tableView.setAlternatingRowColors(True)
         self.tableView.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.tableView.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
@@ -77,13 +80,3 @@ class Ui_MainWindow(object):
         self.actionRecord_Last_to_First.setText(_translate("MainWindow", "Record Last to First"))
         self.actionPrint_full_list.setText(_translate("MainWindow", "Print list"))
         self.actionPrint_selected.setText(_translate("MainWindow", "Print selected records"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
