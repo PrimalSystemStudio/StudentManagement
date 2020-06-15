@@ -10,9 +10,15 @@
     <height>863</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="maximumSize">
    <size>
-    <width>16777209</width>
+    <width>16777202</width>
     <height>16777215</height>
    </size>
   </property>
@@ -23,6 +29,11 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QTableView" name="tableView">
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
       <property name="contextMenuPolicy">
        <enum>Qt::CustomContextMenu</enum>
       </property>
@@ -30,7 +41,7 @@
        <bool>false</bool>
       </property>
       <property name="toolTipDuration">
-       <number>2</number>
+       <number>5</number>
       </property>
       <property name="styleSheet">
        <string notr="true"/>
@@ -42,7 +53,7 @@
        <bool>false</bool>
       </property>
       <property name="editTriggers">
-       <set>QAbstractItemView::DoubleClicked</set>
+       <set>QAbstractItemView::NoEditTriggers</set>
       </property>
       <property name="alternatingRowColors">
        <bool>true</bool>
@@ -88,31 +99,6 @@
    <addaction name="menuPrint"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionA_to_Z">
-   <property name="text">
-    <string>Last Name A to Z</string>
-   </property>
-  </action>
-  <action name="actionZ_to_A">
-   <property name="text">
-    <string>Last Name Z to A</string>
-   </property>
-  </action>
-  <action name="actionDate_of_Birth">
-   <property name="text">
-    <string>Date of Birth</string>
-   </property>
-  </action>
-  <action name="actionRecord_First_to_Last">
-   <property name="text">
-    <string>Record First to Last</string>
-   </property>
-  </action>
-  <action name="actionRecord_Last_to_First">
-   <property name="text">
-    <string>Record Last to First</string>
-   </property>
-  </action>
   <action name="actionPrint_full_list">
    <property name="text">
     <string>Print list</string>
@@ -189,10 +175,61 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionDelete_Entry</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>deleteEntry()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>552</x>
+     <y>431</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionEdit_Entry</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>editEntry()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>552</x>
+     <y>431</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDuplicate_Entry</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>dupEntry()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>552</x>
+     <y>431</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>printList()</slot>
   <slot>printSelection()</slot>
   <slot>contextMenu()</slot>
+  <slot>deleteEntry()</slot>
+  <slot>editEntry()</slot>
+  <slot>dupEntry()</slot>
  </slots>
 </ui>
