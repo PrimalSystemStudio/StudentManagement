@@ -6,16 +6,15 @@
 # Export as pyinstaller main.py -F
 # Username and password are both "admin"
 import sys
-import sqlite3
 import login
 import landing
 import student_entry
 import view_students
 import report
-from PyQt5 import QtCore, QtWidgets, QtSql
+from PyQt5 import QtCore, QtWidgets, QtGui, QtSql
 
 # How many hours been spent on this project (for personal use)
-hours = 23
+hours = 25
 
 
 # Define login dialogue
@@ -108,20 +107,32 @@ class ViewStudents(QtWidgets.QMainWindow):
         self.data.table.select()
 
         # Database headers
-        self.data.table.setHeaderData(0, QtCore.Qt.Horizontal, "ID")
-        self.data.table.setHeaderData(1, QtCore.Qt.Horizontal, "Given Names")
-        self.data.table.setHeaderData(2, QtCore.Qt.Horizontal, "Family Name")
-        self.data.table.setHeaderData(3, QtCore.Qt.Horizontal, "Date of Birth")
-        self.data.table.setHeaderData(4, QtCore.Qt.Horizontal, "Birth Place")
-        self.data.table.setHeaderData(5, QtCore.Qt.Horizontal, "Hospital Diagnosis")
-        self.data.table.setHeaderData(7, QtCore.Qt.Horizontal, "Nationality")
-        self.data.table.setHeaderData(8, QtCore.Qt.Horizontal, "Gender")
-        self.data.table.setHeaderData(9, QtCore.Qt.Horizontal, "Primary Caregiver")
-        self.data.table.setHeaderData(10, QtCore.Qt.Horizontal, "Contact Name")
-        self.data.table.setHeaderData(11, QtCore.Qt.Horizontal, "Contact Mobile")
+        self.data.table.setHeaderData(
+            0, QtCore.Qt.Horizontal, "ID")
+        self.data.table.setHeaderData(
+            1, QtCore.Qt.Horizontal, "Given Names")
+        self.data.table.setHeaderData(
+            2, QtCore.Qt.Horizontal, "Family Name")
+        self.data.table.setHeaderData(
+            3, QtCore.Qt.Horizontal, "Date of Birth")
+        self.data.table.setHeaderData(
+            4, QtCore.Qt.Horizontal, "Birth Place")
+        self.data.table.setHeaderData(
+            5, QtCore.Qt.Horizontal, "Hospital Diagnosis")
+        self.data.table.setHeaderData(
+            7, QtCore.Qt.Horizontal, "Nationality")
+        self.data.table.setHeaderData(
+            8, QtCore.Qt.Horizontal, "Gender")
+        self.data.table.setHeaderData(
+            9, QtCore.Qt.Horizontal, "Primary Caregiver")
+        self.data.table.setHeaderData(
+            10, QtCore.Qt.Horizontal, "Contact Name")
+        self.data.table.setHeaderData(
+            11, QtCore.Qt.Horizontal, "Contact Mobile")
 
         # Show the data in the table
         self.ui.tableView.setModel(self.data.table)
+        self.ui.tableView.resizeColumnsToContents()
         self.ui.tableView.show()
 
     def printList(self):
@@ -131,13 +142,39 @@ class ViewStudents(QtWidgets.QMainWindow):
     def printSelection(self):
         # Placeholder for print function
         pass
-        
+
     def contextMenu(self):
         # Shows on right click
         self.clickMenu = QtWidgets.QMenu()
         self.clickMenu.addAction(self.ui.actionDelete_Entry)
         self.clickMenu.addAction(self.ui.actionEdit_Entry)
         self.clickMenu.addAction(self.ui.actionDuplicate_Entry)
+        self.clickMenu.popup(QtGui.QCursor.pos())
+
+    def deleteEntry(self):
+        # Warns before deleting the entry
+        warn = QtWidgets.QMessageBox()
+        warn.setIcon(QtWidgets.QMessageBox.Warning)
+        warn.setText(
+            "This will delete all information on this student. Are you sure?")
+        warn.setStandardButtons(
+            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+
+        if warn.exec_() == 16384:   # If "yes" is pressed
+            index = self.ui.tableView.selectedIndexes()
+            self.data.table.removeRow(index[0].row())
+
+    def editEntry(self):
+        # Opens Student View
+        index = self.ui.tableView.selectedIndexes()
+        global selected 
+        selected = index[0].row()
+        self.viewstudent = Student()
+        self.viewstudent.show()
+
+    def dupEntry(self):
+        # Add new entry like the clicked entry
+        pass
 
 
 # Window for inputing data for a new student
@@ -146,11 +183,11 @@ class NewStudent(QtWidgets.QMainWindow):
         super().__init__()
         self.ui = student_entry.Ui_MainWindow()
         self.ui.setupUi(self)
-        
+
         # Record starts off editable
         # "Edit record" is greyed out until the record is locked
         self.ui.actionEdit.setEnabled(False)
-        
+
         # Define the database
         self.data = QtSql.QSqlDatabase.addDatabase("QSQLITE")
         self.data.setDatabaseName("documents/students.db")
@@ -159,8 +196,8 @@ class NewStudent(QtWidgets.QMainWindow):
         self.data.table.setTable('student_list')
         self.data.table.select()
 
-    def saveRecord(self):      
-        if (self.ui.lineEdit_name1.text() == '' or 
+    def saveRecord(self):
+        if (self.ui.lineEdit_name1.text() == '' or
                 self.ui.lineEdit_name1.text() == ' ' or
                 self.ui.lineEdit_family.text() == '' or
                 self.ui.lineEdit_family.text() == ' '):
@@ -173,40 +210,49 @@ class NewStudent(QtWidgets.QMainWindow):
             warn.exec_()
         else:
             # Find the last ID in the table
-            self.data.table.last_id = QtSql.QSqlQuery("SELECT MAX(ID) FROM student_list")
+            self.data.table.last_id = QtSql.QSqlQuery(
+                "SELECT MAX(ID) FROM student_list")
             self.data.table.last_id.last()
 
             # Get info entered and put into a new record
             self.data.table.newRecord = self.data.table.primaryValues(0)
-            self.data.table.newRecord.setValue(0, self.data.table.last_id.value(0) + 1)
+            self.data.table.newRecord.setValue(
+                0, self.data.table.last_id.value(0) + 1)
             self.data.table.newRecord.setValue(
                 1, self.ui.lineEdit_name1.text() +
                 " " + self.ui.lineEdit_name2.text() +
                 " " + self.ui.lineEdit_name3.text())
-            self.data.table.newRecord.setValue(2, self.ui.lineEdit_family.text())
+            self.data.table.newRecord.setValue(
+                2, self.ui.lineEdit_family.text())
             self.birthdate = self.ui.dateBirth.dateTime()
-            self.data.table.newRecord.setValue(3,
-                self.ui.dateBirth.textFromDateTime(self.birthdate))
-            self.data.table.newRecord.setValue(4, self.ui.lineEdit_birthplace.text())
-            self.data.table.newRecord.setValue(5, self.ui.lineEdit_diagnosis.text())
-            self.data.table.newRecord.setValue(6, self.ui.lineEdit_nationality.text())
+            self.data.table.newRecord.setValue(
+                3, self.ui.dateBirth.textFromDateTime(self.birthdate))
+            self.data.table.newRecord.setValue(
+                4, self.ui.lineEdit_birthplace.text())
+            self.data.table.newRecord.setValue(
+                5, self.ui.lineEdit_diagnosis.text())
+            self.data.table.newRecord.setValue(
+                6, self.ui.lineEdit_nationality.text())
 
             if self.ui.radioFemale.isChecked():
                 self.data.table.newRecord.setValue(7, "Female")
             elif self.ui.radioMale.isChecked():
                 self.data.table.newRecord.setValue(7, "Male")
 
-            self.data.table.newRecord.setValue(8, self.ui.lineEdit_contactRelation.text())
-            self.data.table.newRecord.setValue(9, self.ui.lineEdit_contactName.text())
-            self.data.table.newRecord.setValue(10, self.ui.lineEdit_contactMobile.text())
-            
+            self.data.table.newRecord.setValue(
+                8, self.ui.lineEdit_contactRelation.text())
+            self.data.table.newRecord.setValue(
+                9, self.ui.lineEdit_contactName.text())
+            self.data.table.newRecord.setValue(
+                10, self.ui.lineEdit_contactMobile.text())
+
             # Insert new record into the table
             self.data.table.insertRecord(-1, self.data.table.newRecord)
             self.hide()
 
     def editRecord(self):
         # Allows text to be edited
-        if self.ui.actionEdit.isEnabled() == True:
+        if self.ui.actionEdit.isEnabled():
             self.ui.lineEdit_birthplace.setReadOnly(False)
             self.ui.lineEdit_caregiver.setReadOnly(False)
             self.ui.lineEdit_diagnosis.setReadOnly(False)
@@ -231,7 +277,7 @@ class NewStudent(QtWidgets.QMainWindow):
 
     def lockRecord(self):
         # Stops text from being edited
-        if self.ui.actionLock.isEnabled() == True:
+        if self.ui.actionLock.isEnabled():
             self.ui.lineEdit_birthplace.setReadOnly(True)
             self.ui.lineEdit_caregiver.setReadOnly(True)
             self.ui.lineEdit_diagnosis.setReadOnly(True)
@@ -281,7 +327,7 @@ class NewStudent(QtWidgets.QMainWindow):
     def assessSensory():
         # Placeholder for sensory assessment
         pass
-        
+
     def assessSpeech():
         # Placeholder for speech assessment
         pass
@@ -293,23 +339,67 @@ class Student(QtWidgets.QMainWindow):
         super().__init__()
         self.ui = student_entry.Ui_MainWindow()
         self.ui.setupUi(self)
-        
-        # Define the database
-        self.data = QtSql.QSqlDatabase.addDatabase("QSQLITE")
-        self.data.setDatabaseName("documents/students.db")
-        self.data.open()
-        
+
+        self.table = QtSql.QSqlTableModel()
+        self.table.setTable('student_list')
+        self.table.select()
+        record = self.table.record(selected)
+
+        # Populate the entries with data from the database
+        self.ui.lineEdit_birthplace.setText(record.value(4))
+        self.ui.lineEdit_caregiver.setText(record.value(8))
+        self.ui.lineEdit_diagnosis.setText(record.value(5))
+        self.ui.lineEdit_family.setText(record.value(2))
+        name = record.value(4)
+        name = name.split(' ')
+        self.ui.lineEdit_name1.setText(name[0])
+        if len(name) > 1:
+            self.ui.lineEdit_name2.setText(name[1])
+            if len(name) > 2:
+                self.ui.lineEdit_name3.setText(name[2])
+        self.ui.lineEdit_nationality.setText(record.value(6))
+        if record.value(7) == "Female":
+            self.ui.radioFemale.setChecked(True)
+            self.ui.radioMale.setChecked(False)
+        elif record.value(7) == "Male":
+            self.ui.radioMale.setChecked(True)
+            self.ui.radioFemale.setChecked(False)
+        self.ui.lineEdit_contactMobile.setText(str(record.value(10)))
+        self.ui.lineEdit_contactName.setText(record.value(9))
+        self.ui.lineEdit_contactRelation.setText(str(record.value(8)))
+
         # Record starts off locked
         # "Lock record" is greyed out until the record is locked
         self.ui.actionLock.setEnabled(False)
-        
+        self.ui.lineEdit_birthplace.setReadOnly(True)
+        self.ui.lineEdit_caregiver.setReadOnly(True)
+        self.ui.lineEdit_diagnosis.setReadOnly(True)
+        self.ui.lineEdit_family.setReadOnly(True)
+        self.ui.lineEdit_name1.setReadOnly(True)
+        self.ui.lineEdit_name2.setReadOnly(True)
+        self.ui.lineEdit_name3.setReadOnly(True)
+        self.ui.lineEdit_nationality.setReadOnly(True)
+        self.ui.radioFemale.setEnabled(False)
+        self.ui.radioMale.setEnabled(False)
+        self.ui.lineEdit_block.setReadOnly(True)
+        self.ui.lineEdit_house.setReadOnly(True)
+        self.ui.lineEdit_lane.setReadOnly(True)
+        self.ui.lineEdit_street.setReadOnly(True)
+        self.ui.lineEdit_village.setReadOnly(True)
+        self.ui.lineEdit_wallaya.setReadOnly(True)
+        self.ui.lineEdit_contactMobile.setReadOnly(True)
+        self.ui.lineEdit_contactName.setReadOnly(True)
+        self.ui.lineEdit_contactRelation.setReadOnly(True)
+        self.ui.actionEdit.setEnabled(True)
+        self.ui.actionLock.setEnabled(False)
+
     def saveRecord(self):
         # Placeholder to save record
         pass
 
     def editRecord(self):
         # Allows text to be edited
-        if self.ui.actionEdit.isEnabled() == True:
+        if self.ui.actionEdit.isEnabled():
             self.ui.lineEdit_birthplace.setReadOnly(False)
             self.ui.lineEdit_caregiver.setReadOnly(False)
             self.ui.lineEdit_diagnosis.setReadOnly(False)
@@ -334,7 +424,7 @@ class Student(QtWidgets.QMainWindow):
 
     def lockRecord(self):
         # Stops text from being edited
-        if self.ui.actionLock.isEnabled() == True:
+        if self.ui.actionLock.isEnabled():
             self.ui.lineEdit_birthplace.setReadOnly(True)
             self.ui.lineEdit_caregiver.setReadOnly(True)
             self.ui.lineEdit_diagnosis.setReadOnly(True)
@@ -356,7 +446,6 @@ class Student(QtWidgets.QMainWindow):
             self.ui.lineEdit_contactRelation.setReadOnly(True)
             self.ui.actionEdit.setEnabled(True)
             self.ui.actionLock.setEnabled(False)
-
 
     def printStudents(self):
         # Placeholder for print function
@@ -382,18 +471,18 @@ class Student(QtWidgets.QMainWindow):
     def assessSensory(self):
         # Placeholder for sensory assessment
         pass
-        
+
     def assessSpeech():
         # Placeholder for speech assessment
         pass
 
 
-class Battele():
+class therapy():
     def __init__(self):
         super().__init__()
         # Placeholder until therapy section is generated
         pass
-    
+
 
 class NewReport(QtWidgets.QWidget):
     def __init__(self):
