@@ -102,36 +102,36 @@ class ViewStudents(QtWidgets.QMainWindow):
         self.data = QtSql.QSqlDatabase.addDatabase("QSQLITE")
         self.data.setDatabaseName("documents/students.db")
         self.data.open()
-        self.data.table = QtSql.QSqlTableModel()
-        self.data.table.setTable('student_list')
-        self.data.table.select()
+        self.table = QtSql.QSqlTableModel()
+        self.table.setTable('student_list')
+        self.table.select()
 
         # Database headers
-        self.data.table.setHeaderData(
+        self.table.setHeaderData(
             0, QtCore.Qt.Horizontal, "ID")
-        self.data.table.setHeaderData(
+        self.table.setHeaderData(
             1, QtCore.Qt.Horizontal, "Given Names")
-        self.data.table.setHeaderData(
+        self.table.setHeaderData(
             2, QtCore.Qt.Horizontal, "Family Name")
-        self.data.table.setHeaderData(
+        self.table.setHeaderData(
             3, QtCore.Qt.Horizontal, "Date of Birth")
-        self.data.table.setHeaderData(
+        self.table.setHeaderData(
             4, QtCore.Qt.Horizontal, "Birth Place")
-        self.data.table.setHeaderData(
+        self.table.setHeaderData(
             5, QtCore.Qt.Horizontal, "Hospital Diagnosis")
-        self.data.table.setHeaderData(
+        self.table.setHeaderData(
             7, QtCore.Qt.Horizontal, "Nationality")
-        self.data.table.setHeaderData(
+        self.table.setHeaderData(
             8, QtCore.Qt.Horizontal, "Gender")
-        self.data.table.setHeaderData(
+        self.table.setHeaderData(
             9, QtCore.Qt.Horizontal, "Primary Caregiver")
-        self.data.table.setHeaderData(
+        self.table.setHeaderData(
             10, QtCore.Qt.Horizontal, "Contact Name")
-        self.data.table.setHeaderData(
+        self.table.setHeaderData(
             11, QtCore.Qt.Horizontal, "Contact Mobile")
 
         # Show the data in the table
-        self.ui.tableView.setModel(self.data.table)
+        self.ui.tableView.setModel(self.table)
         self.ui.tableView.resizeColumnsToContents()
         self.ui.tableView.show()
 
@@ -152,6 +152,7 @@ class ViewStudents(QtWidgets.QMainWindow):
         self.clickMenu.popup(QtGui.QCursor.pos())
 
     def deleteEntry(self):
+        # To remove a row of data
         # Warns before deleting the entry
         warn = QtWidgets.QMessageBox()
         warn.setIcon(QtWidgets.QMessageBox.Warning)
@@ -162,20 +163,39 @@ class ViewStudents(QtWidgets.QMainWindow):
 
         if warn.exec_() == 16384:   # If "yes" is pressed
             index = self.ui.tableView.selectedIndexes()
-            self.data.table.removeRow(index[0].row())
+            self.table.removeRow(index[0].row())
 
     def editEntry(self):
-        # Opens Student View
+        # Opens Student View populated with student data
         index = self.ui.tableView.selectedIndexes()
-        global selected 
+        global selected  # Currently highlighted row
         selected = index[0].row()
         self.viewstudent = Student()
         self.viewstudent.show()
 
     def dupEntry(self):
         # Add new entry like the clicked entry
-        pass
+        index = self.ui.tableView.selectedIndexes()
+        record = self.table.record(index[0].row())
+        self.table.last_id = QtSql.QSqlQuery(
+            "SELECT MAX(ID) FROM student_list")  # Find the last ID in the table
+        self.table.last_id.last()
+        self.table.dupRecord = self.table.primaryValues(0)
+        self.table.dupRecord.setValue(
+            0, self.table.last_id.value(0) + 1)
+        self.table.dupRecord.setValue(1, record.value(1))
+        self.table.dupRecord.setValue(2, record.value(2))
+        self.table.dupRecord.setValue(3, record.value(3))
+        self.table.dupRecord.setValue(4, record.value(4))
+        self.table.dupRecord.setValue(5, record.value(5))
+        self.table.dupRecord.setValue(6, record.value(6))
+        self.table.dupRecord.setValue(7, record.value(7))
+        self.table.dupRecord.setValue(8, record.value(8))
+        self.table.dupRecord.setValue(9, record.value(9))
+        self.table.dupRecord.setValue(10, record.value(10))
 
+        # Insert new record into the table
+        self.table.insertRecord(-1, self.table.dupRecord)
 
 # Window for inputing data for a new student
 class NewStudent(QtWidgets.QMainWindow):
@@ -192,9 +212,9 @@ class NewStudent(QtWidgets.QMainWindow):
         self.data = QtSql.QSqlDatabase.addDatabase("QSQLITE")
         self.data.setDatabaseName("documents/students.db")
         self.data.open()
-        self.data.table = QtSql.QSqlTableModel()
-        self.data.table.setTable('student_list')
-        self.data.table.select()
+        self.table = QtSql.QSqlTableModel()
+        self.table.setTable('student_list')
+        self.table.select()
 
     def saveRecord(self):
         if (self.ui.lineEdit_name1.text() == '' or
@@ -210,44 +230,44 @@ class NewStudent(QtWidgets.QMainWindow):
             warn.exec_()
         else:
             # Find the last ID in the table
-            self.data.table.last_id = QtSql.QSqlQuery(
+            self.table.last_id = QtSql.QSqlQuery(
                 "SELECT MAX(ID) FROM student_list")
-            self.data.table.last_id.last()
+            self.table.last_id.last()
 
             # Get info entered and put into a new record
-            self.data.table.newRecord = self.data.table.primaryValues(0)
-            self.data.table.newRecord.setValue(
-                0, self.data.table.last_id.value(0) + 1)
-            self.data.table.newRecord.setValue(
+            self.table.newRecord = self.table.primaryValues(0)
+            self.table.newRecord.setValue(
+                0, self.table.last_id.value(0) + 1)
+            self.table.newRecord.setValue(
                 1, self.ui.lineEdit_name1.text() +
                 " " + self.ui.lineEdit_name2.text() +
                 " " + self.ui.lineEdit_name3.text())
-            self.data.table.newRecord.setValue(
+            self.table.newRecord.setValue(
                 2, self.ui.lineEdit_family.text())
             self.birthdate = self.ui.dateBirth.dateTime()
-            self.data.table.newRecord.setValue(
+            self.table.newRecord.setValue(
                 3, self.ui.dateBirth.textFromDateTime(self.birthdate))
-            self.data.table.newRecord.setValue(
+            self.table.newRecord.setValue(
                 4, self.ui.lineEdit_birthplace.text())
-            self.data.table.newRecord.setValue(
+            self.table.newRecord.setValue(
                 5, self.ui.lineEdit_diagnosis.text())
-            self.data.table.newRecord.setValue(
+            self.table.newRecord.setValue(
                 6, self.ui.lineEdit_nationality.text())
 
             if self.ui.radioFemale.isChecked():
-                self.data.table.newRecord.setValue(7, "Female")
+                self.table.newRecord.setValue(7, "Female")
             elif self.ui.radioMale.isChecked():
-                self.data.table.newRecord.setValue(7, "Male")
+                self.table.newRecord.setValue(7, "Male")
 
-            self.data.table.newRecord.setValue(
+            self.table.newRecord.setValue(
                 8, self.ui.lineEdit_contactRelation.text())
-            self.data.table.newRecord.setValue(
+            self.table.newRecord.setValue(
                 9, self.ui.lineEdit_contactName.text())
-            self.data.table.newRecord.setValue(
+            self.table.newRecord.setValue(
                 10, self.ui.lineEdit_contactMobile.text())
 
             # Insert new record into the table
-            self.data.table.insertRecord(-1, self.data.table.newRecord)
+            self.table.insertRecord(-1, self.table.newRecord)
             self.hide()
 
     def editRecord(self):
@@ -263,6 +283,7 @@ class NewStudent(QtWidgets.QMainWindow):
             self.ui.lineEdit_nationality.setReadOnly(False)
             self.ui.radioFemale.setEnabled(True)
             self.ui.radioMale.setEnabled(True)
+            self.ui.dateBirth.setReadOnly(False)
             self.ui.lineEdit_block.setReadOnly(False)
             self.ui.lineEdit_house.setReadOnly(False)
             self.ui.lineEdit_lane.setReadOnly(False)
@@ -288,6 +309,7 @@ class NewStudent(QtWidgets.QMainWindow):
             self.ui.lineEdit_nationality.setReadOnly(True)
             self.ui.radioFemale.setEnabled(False)
             self.ui.radioMale.setEnabled(False)
+            self.ui.dateBirth.setReadOnly(True)
             self.ui.lineEdit_block.setReadOnly(True)
             self.ui.lineEdit_house.setReadOnly(True)
             self.ui.lineEdit_lane.setReadOnly(True)
@@ -350,8 +372,9 @@ class Student(QtWidgets.QMainWindow):
         self.ui.lineEdit_caregiver.setText(record.value(8))
         self.ui.lineEdit_diagnosis.setText(record.value(5))
         self.ui.lineEdit_family.setText(record.value(2))
-        name = record.value(4)
+        name = record.value(1)
         name = name.split(' ')
+        print(name)
         self.ui.lineEdit_name1.setText(name[0])
         if len(name) > 1:
             self.ui.lineEdit_name2.setText(name[1])
@@ -364,6 +387,9 @@ class Student(QtWidgets.QMainWindow):
         elif record.value(7) == "Male":
             self.ui.radioMale.setChecked(True)
             self.ui.radioFemale.setChecked(False)
+        dateBirth = record.value(3)
+        dateBirth = QtCore.QDate.fromString(dateBirth, "dd/MM/yyyy")
+        self.ui.dateBirth.setDate(dateBirth)
         self.ui.lineEdit_contactMobile.setText(str(record.value(10)))
         self.ui.lineEdit_contactName.setText(record.value(9))
         self.ui.lineEdit_contactRelation.setText(str(record.value(8)))
@@ -381,6 +407,7 @@ class Student(QtWidgets.QMainWindow):
         self.ui.lineEdit_nationality.setReadOnly(True)
         self.ui.radioFemale.setEnabled(False)
         self.ui.radioMale.setEnabled(False)
+        self.ui.dateBirth.setReadOnly(True)
         self.ui.lineEdit_block.setReadOnly(True)
         self.ui.lineEdit_house.setReadOnly(True)
         self.ui.lineEdit_lane.setReadOnly(True)
@@ -394,8 +421,40 @@ class Student(QtWidgets.QMainWindow):
         self.ui.actionLock.setEnabled(False)
 
     def saveRecord(self):
-        # Placeholder to save record
-        pass
+        # Overwrite the record selected
+        record = self.table.record(selected)
+        self.table.wRecord = record
+        self.table.wRecord.setValue(
+            1, self.ui.lineEdit_name1.text() +
+            " " + self.ui.lineEdit_name2.text() +
+            " " + self.ui.lineEdit_name3.text())
+        self.table.wRecord.setValue(
+            2, self.ui.lineEdit_family.text())
+        self.birthdate = self.ui.dateBirth.dateTime()
+        self.table.wRecord.setValue(
+            3, self.ui.dateBirth.textFromDateTime(self.birthdate))
+        self.table.wRecord.setValue(
+            4, self.ui.lineEdit_birthplace.text())
+        self.table.wRecord.setValue(
+            5, self.ui.lineEdit_diagnosis.text())
+        self.table.wRecord.setValue(
+            6, self.ui.lineEdit_nationality.text())
+
+        if self.ui.radioFemale.isChecked():
+            self.table.wRecord.setValue(7, "Female")
+        elif self.ui.radioMale.isChecked():
+            self.table.wRecord.setValue(7, "Male")
+
+        self.table.wRecord.setValue(
+            8, self.ui.lineEdit_contactRelation.text())
+        self.table.wRecord.setValue(
+            9, self.ui.lineEdit_contactName.text())
+        self.table.wRecord.setValue(
+            10, self.ui.lineEdit_contactMobile.text())
+
+        # Overwrite the record in the table
+        self.table.setRecord(selected, self.table.wRecord)
+        
 
     def editRecord(self):
         # Allows text to be edited
@@ -410,6 +469,7 @@ class Student(QtWidgets.QMainWindow):
             self.ui.lineEdit_nationality.setReadOnly(False)
             self.ui.radioFemale.setEnabled(True)
             self.ui.radioMale.setEnabled(True)
+            self.ui.dateBirth.setReadOnly(False)
             self.ui.lineEdit_block.setReadOnly(False)
             self.ui.lineEdit_house.setReadOnly(False)
             self.ui.lineEdit_lane.setReadOnly(False)
@@ -435,6 +495,7 @@ class Student(QtWidgets.QMainWindow):
             self.ui.lineEdit_nationality.setReadOnly(True)
             self.ui.radioFemale.setEnabled(False)
             self.ui.radioMale.setEnabled(False)
+            self.ui.dateBirth.setReadOnly(True)
             self.ui.lineEdit_block.setReadOnly(True)
             self.ui.lineEdit_house.setReadOnly(True)
             self.ui.lineEdit_lane.setReadOnly(True)
@@ -472,12 +533,12 @@ class Student(QtWidgets.QMainWindow):
         # Placeholder for sensory assessment
         pass
 
-    def assessSpeech():
+    def assessSpeech(self):
         # Placeholder for speech assessment
         pass
 
 
-class therapy():
+class Therapy():
     def __init__(self):
         super().__init__()
         # Placeholder until therapy section is generated
