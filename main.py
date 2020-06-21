@@ -14,7 +14,7 @@ import report
 from PyQt5 import QtCore, QtWidgets, QtGui, QtSql
 
 # How many hours been spent on this project (for personal use)
-hours = 25
+hours = 28
 
 
 # Define login dialogue
@@ -72,7 +72,6 @@ class Landing(QtWidgets.QMainWindow):
     def browse(self):
         self.viewstudents = ViewStudents()
         self.viewstudents.show()
-        print("browse button pressed")
 
     def guide(self):
         print("guide button pressed")
@@ -80,12 +79,10 @@ class Landing(QtWidgets.QMainWindow):
     def register(self):
         self.newstudent = NewStudent()
         self.newstudent.show()
-        print("guide button pressed")
 
     def report(self):
         self.newreport = NewReport()
         self.newreport.show()
-        print("report button pressed")
 
     def stats(self):
         print("stats button pressed")
@@ -163,13 +160,15 @@ class ViewStudents(QtWidgets.QMainWindow):
 
         if warn.exec_() == 16384:   # If "yes" is pressed
             index = self.ui.tableView.selectedIndexes()
-            self.table.removeRow(index[0].row())
+            if index != []:
+                self.table.removeRow(index[0].row())
 
     def editEntry(self):
         # Opens Student View populated with student data
         index = self.ui.tableView.selectedIndexes()
         global selected  # Currently highlighted row
-        selected = index[0].row()
+        if index != []:
+            selected = index[0].row()
         self.viewstudent = Student()
         self.viewstudent.show()
 
@@ -178,7 +177,7 @@ class ViewStudents(QtWidgets.QMainWindow):
         index = self.ui.tableView.selectedIndexes()
         record = self.table.record(index[0].row())
         self.table.last_id = QtSql.QSqlQuery(
-            "SELECT MAX(ID) FROM student_list")  # Find the last ID in the table
+            "SELECT MAX(ID) FROM student_list")  # Find the last ID in table
         self.table.last_id.last()
         self.table.dupRecord = self.table.primaryValues(0)
         self.table.dupRecord.setValue(
@@ -196,6 +195,7 @@ class ViewStudents(QtWidgets.QMainWindow):
 
         # Insert new record into the table
         self.table.insertRecord(-1, self.table.dupRecord)
+
 
 # Window for inputing data for a new student
 class NewStudent(QtWidgets.QMainWindow):
@@ -365,7 +365,12 @@ class Student(QtWidgets.QMainWindow):
         self.table = QtSql.QSqlTableModel()
         self.table.setTable('student_list')
         self.table.select()
-        record = self.table.record(selected)
+        try:
+            selected
+        except NameError:
+            record = self.table.record(0)
+        else:
+            record = self.table.record(selected)
 
         # Populate the entries with data from the database
         self.ui.lineEdit_birthplace.setText(record.value(4))
@@ -374,7 +379,6 @@ class Student(QtWidgets.QMainWindow):
         self.ui.lineEdit_family.setText(record.value(2))
         name = record.value(1)
         name = name.split(' ')
-        print(name)
         self.ui.lineEdit_name1.setText(name[0])
         if len(name) > 1:
             self.ui.lineEdit_name2.setText(name[1])
@@ -454,7 +458,6 @@ class Student(QtWidgets.QMainWindow):
 
         # Overwrite the record in the table
         self.table.setRecord(selected, self.table.wRecord)
-        
 
     def editRecord(self):
         # Allows text to be edited
@@ -573,6 +576,5 @@ class About(QtWidgets.QMainWindow):
 # Define QT5 app and launch login dialog
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    start = ViewStudents()
-    start.show()
+    start = Login()
     app.exec_()

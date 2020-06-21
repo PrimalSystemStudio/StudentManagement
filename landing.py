@@ -2,11 +2,13 @@
 
 # Form implementation generated from reading ui file 'landing.ui'
 #
-# Created by: PyQt5 UI code generator 5.10.1
+# Created by: PyQt5 UI code generator 5.14.2
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Management(object):
     def setupUi(self, Management):
@@ -16,7 +18,7 @@ class Ui_Management(object):
         self.centralwidget = QtWidgets.QWidget(Management)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 170, 241, 321))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 170, 231, 321))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -124,14 +126,3 @@ class Ui_Management(object):
         self.actionView_student_database.setText(_translate("Management", "View student database"))
         self.actionGuide_to_this_program.setText(_translate("Management", "Guide to this program"))
         self.actionAbout.setText(_translate("Management", "About"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Management = QtWidgets.QMainWindow()
-    ui = Ui_Management()
-    ui.setupUi(Management)
-    Management.show()
-    sys.exit(app.exec_())
-
