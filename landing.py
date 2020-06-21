@@ -37,6 +37,7 @@ class Ui_Management(object):
         self.verticalLayout.addWidget(self.statsButton)
         self.graphicsView = QtWidgets.QGraphicsView(self.centralwidget)
         self.graphicsView.setGeometry(QtCore.QRect(250, 120, 571, 421))
+        self.graphicsView.setFocusPolicy(QtCore.Qt.NoFocus)
         self.graphicsView.setObjectName("graphicsView")
         self.title = QtWidgets.QLabel(self.centralwidget)
         self.title.setGeometry(QtCore.QRect(260, 10, 561, 101))

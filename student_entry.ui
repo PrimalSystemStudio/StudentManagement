@@ -20,6 +20,12 @@
    <string>Student Information</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="accessibleName">
+    <string>Student information</string>
+   </property>
+   <property name="accessibleDescription">
+    <string>Student information form</string>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QLabel" name="label_studentsDetails">
@@ -43,15 +49,20 @@
      <layout class="QGridLayout" name="student_details" rowstretch="0,0,0,0">
       <item row="1" column="5">
        <widget class="QDateEdit" name="dateBirth">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="statusTip">
+         <string/>
+        </property>
+        <property name="accessibleName">
+         <string>Date of birth</string>
+        </property>
         <property name="calendarPopup">
          <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="label_diagnosis">
-        <property name="text">
-         <string>Hospital Diagnosis</string>
         </property>
        </widget>
       </item>
@@ -70,10 +81,18 @@
        </widget>
       </item>
       <item row="0" column="2">
-       <widget class="QLineEdit" name="lineEdit_name2"/>
+       <widget class="QLineEdit" name="lineEdit_name2">
+        <property name="accessibleName">
+         <string>Father's name</string>
+        </property>
+       </widget>
       </item>
       <item row="1" column="3">
-       <widget class="QLineEdit" name="lineEdit_diagnosis"/>
+       <widget class="QLineEdit" name="lineEdit_diagnosis">
+        <property name="accessibleName">
+         <string>Hospital diagnosis</string>
+        </property>
+       </widget>
       </item>
       <item row="1" column="4">
        <widget class="QLabel" name="label_birthdate">
@@ -83,10 +102,18 @@
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QLineEdit" name="lineEdit_name3"/>
+       <widget class="QLineEdit" name="lineEdit_name3">
+        <property name="accessibleName">
+         <string>Grandfather's name</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="5">
-       <widget class="QLineEdit" name="lineEdit_family"/>
+       <widget class="QLineEdit" name="lineEdit_family">
+        <property name="accessibleName">
+         <string>Family name</string>
+        </property>
+       </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_birthplace">
@@ -96,7 +123,11 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLineEdit" name="lineEdit_birthplace"/>
+       <widget class="QLineEdit" name="lineEdit_birthplace">
+        <property name="accessibleName">
+         <string>Birthplace</string>
+        </property>
+       </widget>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="label_nationality">
@@ -113,7 +144,11 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QLineEdit" name="lineEdit_nationality"/>
+       <widget class="QLineEdit" name="lineEdit_nationality">
+        <property name="accessibleName">
+         <string>Nationality</string>
+        </property>
+       </widget>
       </item>
       <item row="3" column="3">
        <widget class="QRadioButton" name="radioMale">
@@ -126,10 +161,18 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit_name1"/>
+       <widget class="QLineEdit" name="lineEdit_name1">
+        <property name="accessibleName">
+         <string>First name</string>
+        </property>
+       </widget>
       </item>
       <item row="2" column="5">
-       <widget class="QLineEdit" name="lineEdit_caregiver"/>
+       <widget class="QLineEdit" name="lineEdit_caregiver">
+        <property name="accessibleName">
+         <string>Primary caregiver</string>
+        </property>
+       </widget>
       </item>
       <item row="2" column="4">
        <widget class="QLabel" name="label_caregiver">
@@ -146,6 +189,13 @@
         <attribute name="buttonGroup">
          <string notr="true">buttonGroup</string>
         </attribute>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_diagnosis">
+        <property name="text">
+         <string>Hospital Diagnosis</string>
+        </property>
        </widget>
       </item>
      </layout>
@@ -186,16 +236,32 @@
        </widget>
       </item>
       <item row="1" column="3">
-       <widget class="QLineEdit" name="lineEdit_lane"/>
+       <widget class="QLineEdit" name="lineEdit_lane">
+        <property name="accessibleName">
+         <string>Lane number</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit_wallaya"/>
+       <widget class="QLineEdit" name="lineEdit_wallaya">
+        <property name="accessibleName">
+         <string>Wallaya</string>
+        </property>
+       </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLineEdit" name="lineEdit_street"/>
+       <widget class="QLineEdit" name="lineEdit_street">
+        <property name="accessibleName">
+         <string>Street</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="5">
-       <widget class="QLineEdit" name="lineEdit_block"/>
+       <widget class="QLineEdit" name="lineEdit_block">
+        <property name="accessibleName">
+         <string>Block number</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="2">
        <widget class="QLabel" name="label_village">
@@ -205,7 +271,11 @@
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QLineEdit" name="lineEdit_village"/>
+       <widget class="QLineEdit" name="lineEdit_village">
+        <property name="accessibleName">
+         <string>Village</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="4">
        <widget class="QLabel" name="label_block">
@@ -215,7 +285,11 @@
        </widget>
       </item>
       <item row="1" column="5">
-       <widget class="QLineEdit" name="lineEdit_house"/>
+       <widget class="QLineEdit" name="lineEdit_house">
+        <property name="accessibleName">
+         <string>House number</string>
+        </property>
+       </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_street">
@@ -241,7 +315,11 @@
     <item>
      <layout class="QGridLayout" name="emergency_contact">
       <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit_contactName"/>
+       <widget class="QLineEdit" name="lineEdit_contactName">
+        <property name="accessibleName">
+         <string>Emergency contact name</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="2">
        <widget class="QLabel" name="label_contactRelation">
@@ -258,10 +336,18 @@
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QLineEdit" name="lineEdit_contactRelation"/>
+       <widget class="QLineEdit" name="lineEdit_contactRelation">
+        <property name="accessibleName">
+         <string>Emergency contact relation to student</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="5">
-       <widget class="QLineEdit" name="lineEdit_contactMobile"/>
+       <widget class="QLineEdit" name="lineEdit_contactMobile">
+        <property name="accessibleName">
+         <string>Mobile number for emergency ctconta</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="4">
        <widget class="QLabel" name="label_contactMobile">
