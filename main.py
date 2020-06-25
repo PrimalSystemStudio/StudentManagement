@@ -14,7 +14,7 @@ import report
 from PyQt5 import QtCore, QtWidgets, QtGui, QtSql
 
 # How many hours been spent on this project (for personal use)
-hours = 28
+hours = 30
 
 
 # Define login dialogue
@@ -207,6 +207,14 @@ class NewStudent(QtWidgets.QMainWindow):
         # Record starts off editable
         # "Edit record" is greyed out until the record is locked
         self.ui.actionEdit.setEnabled(False)
+        
+        # Grey out all actions until the student is saved
+        self.ui.actionExport_as_PDF.setEnabled(False)
+        self.ui.actionExport_as_Word_document.setEnabled(False)
+        self.ui.actionSensory.setEnabled(False)
+        self.ui.actionResults.setEnabled(False)
+        self.ui.actionPlan.setEnabled(False)
+        self.ui.menuTools.setEnabled(False)
 
         # Define the database
         self.data = QtSql.QSqlDatabase.addDatabase("QSQLITE")
@@ -268,7 +276,18 @@ class NewStudent(QtWidgets.QMainWindow):
 
             # Insert new record into the table
             self.table.insertRecord(-1, self.table.newRecord)
-            self.hide()
+
+            # After the record is inserted all the actions to be used
+            self.ui.actionExport_as_PDF.setEnabled(True)
+            self.ui.actionExport_as_Word_document.setEnabled(True)
+            self.ui.actionSensory.setEnabled(True)
+            self.ui.actionResults.setEnabled(True)
+            self.ui.actionPlan.setEnabled(True)
+            self.ui.actionBattele.setEnabled(True)
+            self.ui.actionPhysio.setEnabled(True)
+            self.ui.actionBehavior.setEnabled(True)
+            self.ui.actionSpeech.setEnabled(True)
+            self.ui.menuTools.setEnabled(True)
 
     def editRecord(self):
         # Allows text to be edited
