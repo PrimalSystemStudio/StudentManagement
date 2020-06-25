@@ -31,7 +31,7 @@
      <widget class="QTableView" name="tableView">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="contextMenuPolicy">
@@ -74,6 +74,9 @@
        <number>150</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
        <bool>true</bool>
       </attribute>
      </widget>

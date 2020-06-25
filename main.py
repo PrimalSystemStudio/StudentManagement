@@ -14,7 +14,7 @@ import report
 from PyQt5 import QtCore, QtWidgets, QtGui, QtSql
 
 # How many hours been spent on this project (for personal use)
-hours = 30
+hours = 31
 
 
 # Define login dialogue
@@ -103,32 +103,11 @@ class ViewStudents(QtWidgets.QMainWindow):
         self.table.setTable('student_list')
         self.table.select()
 
-        # Database headers
-        self.table.setHeaderData(
-            0, QtCore.Qt.Horizontal, "ID")
-        self.table.setHeaderData(
-            1, QtCore.Qt.Horizontal, "Given Names")
-        self.table.setHeaderData(
-            2, QtCore.Qt.Horizontal, "Family Name")
-        self.table.setHeaderData(
-            3, QtCore.Qt.Horizontal, "Date of Birth")
-        self.table.setHeaderData(
-            4, QtCore.Qt.Horizontal, "Birth Place")
-        self.table.setHeaderData(
-            5, QtCore.Qt.Horizontal, "Hospital Diagnosis")
-        self.table.setHeaderData(
-            7, QtCore.Qt.Horizontal, "Nationality")
-        self.table.setHeaderData(
-            8, QtCore.Qt.Horizontal, "Gender")
-        self.table.setHeaderData(
-            9, QtCore.Qt.Horizontal, "Primary Caregiver")
-        self.table.setHeaderData(
-            10, QtCore.Qt.Horizontal, "Contact Name")
-        self.table.setHeaderData(
-            11, QtCore.Qt.Horizontal, "Contact Mobile")
-
         # Show the data in the table
+        # Only show first 7 columns
         self.ui.tableView.setModel(self.table)
+        for x in range(8, 20):
+            self.ui.tableView.setColumnHidden(x, True)
         self.ui.tableView.resizeColumnsToContents()
         self.ui.tableView.show()
 
@@ -148,7 +127,7 @@ class ViewStudents(QtWidgets.QMainWindow):
         self.clickMenu.addAction(self.ui.actionDuplicate_Entry)
         self.clickMenu.popup(QtGui.QCursor.pos())
 
-    def deleteEntry(self):
+    def deleteEntry(self):++++
         # To remove a row of data
         # Warns before deleting the entry
         warn = QtWidgets.QMessageBox()
@@ -174,24 +153,17 @@ class ViewStudents(QtWidgets.QMainWindow):
 
     def dupEntry(self):
         # Add new entry like the clicked entry
+        # Duplicated entry does not include therapy plan and assessments
         index = self.ui.tableView.selectedIndexes()
         record = self.table.record(index[0].row())
         self.table.last_id = QtSql.QSqlQuery(
             "SELECT MAX(ID) FROM student_list")  # Find the last ID in table
         self.table.last_id.last()
         self.table.dupRecord = self.table.primaryValues(0)
+        for x in range(1, 18):
+            self.table.dupRecord.setValue(x, record.value(x))
         self.table.dupRecord.setValue(
             0, self.table.last_id.value(0) + 1)
-        self.table.dupRecord.setValue(1, record.value(1))
-        self.table.dupRecord.setValue(2, record.value(2))
-        self.table.dupRecord.setValue(3, record.value(3))
-        self.table.dupRecord.setValue(4, record.value(4))
-        self.table.dupRecord.setValue(5, record.value(5))
-        self.table.dupRecord.setValue(6, record.value(6))
-        self.table.dupRecord.setValue(7, record.value(7))
-        self.table.dupRecord.setValue(8, record.value(8))
-        self.table.dupRecord.setValue(9, record.value(9))
-        self.table.dupRecord.setValue(10, record.value(10))
 
         # Insert new record into the table
         self.table.insertRecord(-1, self.table.dupRecord)
@@ -207,7 +179,7 @@ class NewStudent(QtWidgets.QMainWindow):
         # Record starts off editable
         # "Edit record" is greyed out until the record is locked
         self.ui.actionEdit.setEnabled(False)
-        
+
         # Grey out all actions until the student is saved
         self.ui.actionExport_as_PDF.setEnabled(False)
         self.ui.actionExport_as_Word_document.setEnabled(False)
@@ -268,11 +240,25 @@ class NewStudent(QtWidgets.QMainWindow):
                 self.table.newRecord.setValue(7, "Male")
 
             self.table.newRecord.setValue(
-                8, self.ui.lineEdit_contactRelation.text())
+                8, self.ui.lineEdit_caregiver.text())
             self.table.newRecord.setValue(
                 9, self.ui.lineEdit_contactName.text())
             self.table.newRecord.setValue(
                 10, self.ui.lineEdit_contactMobile.text())
+            self.table.newRecord.setValue(
+                11, self.ui.lineEdit_wallaya.text())
+            self.table.newRecord.setValue(
+                12, self.ui.lineEdit_lane.text())
+            self.table.newRecord.setValue(
+                13, self.ui.lineEdit_house.text())
+            self.table.newRecord.setValue(
+                14, self.ui.lineEdit_street.text())
+            self.table.newRecord.setValue(
+                15, self.ui.lineEdit_block.text())
+            self.table.newRecord.setValue(
+                16, self.ui.lineEdit_village.text())
+            self.table.newRecord.setValue(
+                17, self.ui.lineEdit_contactRelation.text())
 
             # Insert new record into the table
             self.table.insertRecord(-1, self.table.newRecord)
@@ -416,9 +402,15 @@ class Student(QtWidgets.QMainWindow):
         self.ui.lineEdit_contactMobile.setText(str(record.value(10)))
         self.ui.lineEdit_contactName.setText(record.value(9))
         self.ui.lineEdit_contactRelation.setText(str(record.value(8)))
+        self.ui.lineEdit_wallaya.setText(record.value(11))
+        self.ui.lineEdit_lane.setText(record.value(12))
+        self.ui.lineEdit_house.setText(record.value(13))
+        self.ui.lineEdit_street.setText(record.value(14))
+        self.ui.lineEdit_block.setText(record.value(15))
+        self.ui.lineEdit_village.setText(record.value(16))
+        self.ui.lineEdit_contactRelation.setText(record.value(17))
 
         # Record starts off locked
-        # "Lock record" is greyed out until the record is locked
         self.ui.actionLock.setEnabled(False)
         self.ui.lineEdit_birthplace.setReadOnly(True)
         self.ui.lineEdit_caregiver.setReadOnly(True)
@@ -440,6 +432,8 @@ class Student(QtWidgets.QMainWindow):
         self.ui.lineEdit_contactMobile.setReadOnly(True)
         self.ui.lineEdit_contactName.setReadOnly(True)
         self.ui.lineEdit_contactRelation.setReadOnly(True)
+
+        # "Lock record" is greyed out until the record is locked
         self.ui.actionEdit.setEnabled(True)
         self.ui.actionLock.setEnabled(False)
 
@@ -474,6 +468,20 @@ class Student(QtWidgets.QMainWindow):
             9, self.ui.lineEdit_contactName.text())
         self.table.wRecord.setValue(
             10, self.ui.lineEdit_contactMobile.text())
+        self.table.newRecord.setValue(
+            11, self.ui.lineEdit_wallaya.text())
+        self.table.newRecord.setValue(
+            12, self.ui.lineEdit_lane.text())
+        self.table.newRecord.setValue(
+            13, self.ui.lineEdit_house.text())
+        self.table.newRecord.setValue(
+            14, self.ui.lineEdit_street.text())
+        self.table.newRecord.setValue(
+            15, self.ui.lineEdit_block.text())
+        self.table.newRecord.setValue(
+            16, self.ui.lineEdit_village.text())
+        self.table.newRecord.setValue(
+            17, self.ui.lineEdit_contactRelation.text())
 
         # Overwrite the record in the table
         self.table.setRecord(selected, self.table.wRecord)
@@ -588,12 +596,13 @@ class Guide(QtWidgets.QMainWindow):
 
 class About(QtWidgets.QMainWindow):
     def __init__(self):
-        # Placeholder until UI for stats page is generated
+        # Placeholder until UI for about page is generated
         pass
 
 
 # Define QT5 app and launch login dialog
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    start = Login()
+    start = ViewStudents()
+    start.show()
     app.exec_()
