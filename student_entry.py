@@ -233,16 +233,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.actionSave_Record.triggered.connect(MainWindow.saveRecord)
-        self.actionExport_as_PDF.triggered.connect(MainWindow.exportPDF)
-        self.actionExport_as_Word_document.triggered.connect(MainWindow.exportDocx)
-        self.actionBattele.triggered.connect(MainWindow.assessBattele)
-        self.actionBehavior.triggered.connect(MainWindow.assessBehaviour)
-        self.actionPhysio.triggered.connect(MainWindow.assessPhysio)
-        self.actionSpeech.triggered.connect(MainWindow.assessSpeech)
         self.actionEdit.triggered.connect(MainWindow.editRecord)
         self.actionLock.triggered.connect(MainWindow.lockRecord)
-        self.actionPlan.triggered.connect(MainWindow.viewPlan)
-        self.actionResults.triggered.connect(MainWindow.checkResults)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

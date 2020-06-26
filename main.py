@@ -81,8 +81,8 @@ class Landing(QtWidgets.QMainWindow):
         self.newstudent.show()
 
     def report(self):
-        self.newreport = NewReport()
-        self.newreport.show()
+        self.plan = Plan()
+        self.plan.show()
 
     def stats(self):
         print("stats button pressed")
@@ -180,13 +180,10 @@ class NewStudent(QtWidgets.QMainWindow):
         # "Edit record" is greyed out until the record is locked
         self.ui.actionEdit.setEnabled(False)
 
-        # Grey out all actions until the student is saved
-        self.ui.actionExport_as_PDF.setEnabled(False)
-        self.ui.actionExport_as_Word_document.setEnabled(False)
-        self.ui.actionSensory.setEnabled(False)
-        self.ui.actionResults.setEnabled(False)
-        self.ui.actionPlan.setEnabled(False)
-        self.ui.menuTools.setEnabled(False)
+        # Grey out all actions
+        self.ui.menuPrint.setEnabled(False)
+        self.ui.menuExport.setEnabled(False)
+        self.ui.menuAssessment.setEnabled(False)
 
         # Define the database
         self.data = QtSql.QSqlDatabase.addDatabase("QSQLITE")
@@ -260,20 +257,9 @@ class NewStudent(QtWidgets.QMainWindow):
             self.table.newRecord.setValue(
                 17, self.ui.lineEdit_contactRelation.text())
 
-            # Insert new record into the table
+            # Insert new record into the table and select it
             self.table.insertRecord(-1, self.table.newRecord)
-
-            # After the record is inserted all the actions to be used
-            self.ui.actionExport_as_PDF.setEnabled(True)
-            self.ui.actionExport_as_Word_document.setEnabled(True)
-            self.ui.actionSensory.setEnabled(True)
-            self.ui.actionResults.setEnabled(True)
-            self.ui.actionPlan.setEnabled(True)
-            self.ui.actionBattele.setEnabled(True)
-            self.ui.actionPhysio.setEnabled(True)
-            self.ui.actionBehavior.setEnabled(True)
-            self.ui.actionSpeech.setEnabled(True)
-            self.ui.menuTools.setEnabled(True)
+            self.hide()
 
     def editRecord(self):
         # Allows text to be edited
@@ -326,46 +312,6 @@ class NewStudent(QtWidgets.QMainWindow):
             self.ui.lineEdit_contactRelation.setReadOnly(True)
             self.ui.actionEdit.setEnabled(True)
             self.ui.actionLock.setEnabled(False)
-
-    def printStudents(self):
-        # Placeholder for print function
-        pass
-
-    def exportPDF(self):
-        # Placeholder for PDF exporting
-        pass
-
-    def exportDocx(self):
-        # Placeholder for .docx exporting
-        pass
-
-    def assessBattele(self):
-        # Placeholder for behavioural assessment
-        pass
-
-    def assessBehaviour(self):
-        # Placeholder for behavioural assessment
-        pass
-
-    def assessPhysio(self):
-        # Placeholder for physiotherapy assessment
-        pass
-
-    def assessSensory(self):
-        # Placeholder for sensory assessment
-        pass
-
-    def assessSpeech(self):
-        # Placeholder for speech assessment
-        pass
-
-    def checkResults(self):
-        # Placeholder for checking results
-        pass
-
-    def viewPlan(self):
-        # Placeholder for viewing and editing therapy plan
-        pass
 
 
 # Window for editing data for a new student
@@ -446,6 +392,28 @@ class Student(QtWidgets.QMainWindow):
         # "Lock record" is greyed out until the record is locked
         self.ui.actionEdit.setEnabled(True)
         self.ui.actionLock.setEnabled(False)
+
+        # Connect actions to relevant functions
+        self.ui.actionExport_as_PDF.triggered.connect(
+            self.exportPDF)
+        self.ui.actionExport_as_Word_document.triggered.connect(
+            self.exportDocx)
+        self.ui.actionBattele.triggered.connect(
+            self.assessBattele)
+        self.ui.actionBehavior.triggered.connect(
+            self.assessBehaviour)
+        self.ui.actionPhysio.triggered.connect(
+            self.assessPhysio)
+        self.ui.actionSpeech.triggered.connect(
+            self.assessSpeech)
+        self.ui.actionEdit.triggered.connect(
+            self.editRecord)
+        self.ui.actionLock.triggered.connect(
+            self.lockRecord)
+        self.ui.actionPlan.triggered.connect(
+            self.viewPlan)
+        self.ui.actionResults.triggered.connect(
+            self.checkResults)
 
     def saveRecord(self):
         # Overwrite the record selected
@@ -588,14 +556,15 @@ class Student(QtWidgets.QMainWindow):
         # Placeholder for viewing and editing therapy plan
         pass
 
-class Therapy():
+
+class Assess():
     def __init__(self):
         super().__init__()
         # Placeholder until therapy section is generated
         pass
 
 
-class NewReport(QtWidgets.QWidget):
+class Plan(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.ui = report.Ui_Form()
