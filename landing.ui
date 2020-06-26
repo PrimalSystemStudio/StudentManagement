@@ -45,13 +45,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="reportButton">
-       <property name="text">
-        <string>Add Report</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="statsButton">
        <property name="text">
         <string>Statistics</string>
@@ -110,13 +103,6 @@
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuReport">
-    <property name="title">
-     <string>Report</string>
-    </property>
-    <addaction name="actionAdd_report"/>
-    <addaction name="actionView_reports"/>
-   </widget>
    <widget class="QMenu" name="menuRegister">
     <property name="title">
      <string>Register</string>
@@ -139,7 +125,6 @@
     <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuRegister"/>
-   <addaction name="menuReport"/>
    <addaction name="menuWindow"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -152,16 +137,6 @@
   <action name="actionMaximize_window">
    <property name="text">
     <string>Maximize window</string>
-   </property>
-  </action>
-  <action name="actionAdd_report">
-   <property name="text">
-    <string>Add report</string>
-   </property>
-  </action>
-  <action name="actionView_reports">
-   <property name="text">
-    <string>View reports</string>
    </property>
   </action>
   <action name="actionRegister_new_student">
@@ -220,42 +195,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionAdd_report</sender>
-   <signal>triggered()</signal>
-   <receiver>Management</receiver>
-   <slot>report()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>413</x>
-     <y>299</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>actionRegister_new_student</sender>
    <signal>triggered()</signal>
    <receiver>Management</receiver>
    <slot>register()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>413</x>
-     <y>299</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionView_reports</sender>
-   <signal>triggered()</signal>
-   <receiver>Management</receiver>
-   <slot>browse()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -308,22 +251,6 @@
     <hint type="sourcelabel">
      <x>120</x>
      <y>245</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>413</x>
-     <y>299</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>reportButton</sender>
-   <signal>clicked()</signal>
-   <receiver>Management</receiver>
-   <slot>report()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>120</x>
-     <y>387</y>
     </hint>
     <hint type="destinationlabel">
      <x>413</x>
