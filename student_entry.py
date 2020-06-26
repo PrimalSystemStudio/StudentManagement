@@ -241,6 +241,8 @@ class Ui_MainWindow(object):
         self.actionSpeech.triggered.connect(MainWindow.assessSpeech)
         self.actionEdit.triggered.connect(MainWindow.editRecord)
         self.actionLock.triggered.connect(MainWindow.lockRecord)
+        self.actionPlan.triggered.connect(MainWindow.viewPlan)
+        self.actionResults.triggered.connect(MainWindow.checkResults)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

@@ -127,7 +127,7 @@ class ViewStudents(QtWidgets.QMainWindow):
         self.clickMenu.addAction(self.ui.actionDuplicate_Entry)
         self.clickMenu.popup(QtGui.QCursor.pos())
 
-    def deleteEntry(self):++++
+    def deleteEntry(self):
         # To remove a row of data
         # Warns before deleting the entry
         warn = QtWidgets.QMessageBox()
@@ -327,36 +327,44 @@ class NewStudent(QtWidgets.QMainWindow):
             self.ui.actionEdit.setEnabled(True)
             self.ui.actionLock.setEnabled(False)
 
-    def printStudents():
+    def printStudents(self):
         # Placeholder for print function
         pass
 
-    def exportPDF():
+    def exportPDF(self):
         # Placeholder for PDF exporting
         pass
 
-    def exportDocx():
+    def exportDocx(self):
         # Placeholder for .docx exporting
         pass
 
-    def assessBattele():
+    def assessBattele(self):
         # Placeholder for behavioural assessment
         pass
 
-    def assessBehaviour():
+    def assessBehaviour(self):
         # Placeholder for behavioural assessment
         pass
 
-    def assessPhysio():
+    def assessPhysio(self):
         # Placeholder for physiotherapy assessment
         pass
 
-    def assessSensory():
+    def assessSensory(self):
         # Placeholder for sensory assessment
         pass
 
-    def assessSpeech():
+    def assessSpeech(self):
         # Placeholder for speech assessment
+        pass
+
+    def checkResults(self):
+        # Placeholder for checking results
+        pass
+
+    def viewPlan(self):
+        # Placeholder for viewing and editing therapy plan
         pass
 
 
@@ -378,6 +386,8 @@ class Student(QtWidgets.QMainWindow):
             record = self.table.record(selected)
 
         # Populate the entries with data from the database
+        self.ui.label_studentsDetails.setText(
+            "Student Details [ID " + str(record.value(0)) + "]")
         self.ui.lineEdit_birthplace.setText(record.value(4))
         self.ui.lineEdit_caregiver.setText(record.value(8))
         self.ui.lineEdit_diagnosis.setText(record.value(5))
@@ -543,12 +553,15 @@ class Student(QtWidgets.QMainWindow):
         pass
 
     def exportPDF(self):
+        # Placeholder for export function
         pass
 
     def exportDocx(self):
+        # Placeholder for export function
         pass
 
     def assessBattele(self):
+        # Placeholder for Battele assessment
         pass
 
     def assessBehaviour(self):
@@ -567,6 +580,13 @@ class Student(QtWidgets.QMainWindow):
         # Placeholder for speech assessment
         pass
 
+    def checkResults(self):
+        # Placeholder for checking results
+        pass
+
+    def viewPlan(self):
+        # Placeholder for viewing and editing therapy plan
+        pass
 
 class Therapy():
     def __init__(self):
@@ -603,6 +623,6 @@ class About(QtWidgets.QMainWindow):
 # Define QT5 app and launch login dialog
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    start = ViewStudents()
-    start.show()
+    start = Login()
+    # start.show()
     app.exec_()
