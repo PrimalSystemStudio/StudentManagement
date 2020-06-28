@@ -392,7 +392,7 @@
    </widget>
    <widget class="QMenu" name="menuAssessment">
     <property name="title">
-     <string>Assessment</string>
+     <string>Details</string>
     </property>
     <widget class="QMenu" name="menuTools">
      <property name="title">
@@ -404,8 +404,8 @@
      <addaction name="actionBehavior"/>
      <addaction name="actionSpeech"/>
     </widget>
-    <addaction name="actionResults"/>
     <addaction name="actionPlan"/>
+    <addaction name="actionResults"/>
     <addaction name="menuTools"/>
    </widget>
    <addaction name="menuSave"/>

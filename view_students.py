@@ -44,6 +44,7 @@ class Ui_MainWindow(object):
         self.tableView.horizontalHeader().setDefaultSectionSize(150)
         self.tableView.horizontalHeader().setSortIndicatorShown(True)
         self.tableView.horizontalHeader().setStretchLastSection(True)
+        self.tableView.verticalHeader().setVisible(False)
         self.horizontalLayout.addWidget(self.tableView)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)

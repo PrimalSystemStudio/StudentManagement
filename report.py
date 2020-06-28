@@ -22,10 +22,12 @@ class Ui_Form(object):
         self.buttonBox = QtWidgets.QDialogButtonBox(Form)
         self.buttonBox.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Save)
+        self.buttonBox.setCenterButtons(True)
         self.buttonBox.setObjectName("buttonBox")
         self.verticalLayout.addWidget(self.buttonBox)
 
         self.retranslateUi(Form)
+        self.buttonBox.accepted.connect(Form.save)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
