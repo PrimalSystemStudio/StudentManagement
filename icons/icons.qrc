@@ -1,0 +1,19 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file alias="img-copy">copy-solid.svg</file>
+    <file alias="img-cut">cut-solid.svg</file>
+    <file alias="img-paste">paste-solid.svg</file>
+    <file alias="img-bold">bold-solid.svg</file>
+    <file alias="img-underline">underline-solid.svg</file>
+    <file alias="img-italics">italic-solid.svg</file>
+    <file alias="img-h1">heading-solid.svg</file>
+    <file alias="img-link">link-solid.svg</file>
+    <file alias="img-unlink">unlink-solid.svg</file>
+    <file alias="img-ol">orderedlist-solid.svg</file>
+    <file alias="img-ul">unorderedlist-solid.svg</file>
+    <file alias="img-unlink">unlink-solid.svg</file>
+    <file alias="img-unlink">unlink-solid.svg</file>
+    <file alias="img-undo">undo-solid.svg</file>
+    <file alias="img-redo">redo-solid.svg</file>
+</qresource>
+</RCC>
