@@ -7,13 +7,279 @@
     <x>0</x>
     <y>0</y>
     <width>704</width>
-    <height>720</height>
+    <height>910</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_4">
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <item>
+       <widget class="QToolButton" name="toolUndo">
+        <property name="toolTip">
+         <string>Undo change (Ctrl+Z)</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/img-undo</normaloff>:/img-undo</iconset>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+Z</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolRedo">
+        <property name="toolTip">
+         <string>Redo change (Ctrl+Y)</string>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/img-redo</normaloff>:/img-redo</iconset>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+Y</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolCopy">
+        <property name="toolTip">
+         <string>Copy text (Ctrl+C)</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/img-copy</normaloff>:/img-copy</iconset>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+C</string>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolCut">
+        <property name="toolTip">
+         <string>Cut text (Ctrl+X)</string>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/img-cut</normaloff>:/img-cut</iconset>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+X</string>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolPaste">
+        <property name="toolTip">
+         <string>Paste text (Ctrl+V)</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/img-paste</normaloff>:/img-paste</iconset>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+V</string>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolBold">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Bold text (Ctrl+B)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/img-bold</normaloff>:/img-bold</iconset>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+B</string>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolItalic">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Italic text (Ctrl+I)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/img-italics</normaloff>:/img-italics</iconset>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+I</string>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolUnderline">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Underline text (Ctrl+U)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/img-underline</normaloff>:/img-underline</iconset>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+U</string>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolHeader">
+        <property name="toolTip">
+         <string>Add header (Ctrl+1)</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>-1</number>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/img-h1</normaloff>:/img-h1</iconset>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+1</string>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolOList">
+        <property name="toolTip">
+         <string>Unordered list</string>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/img-ol</normaloff>:/img-ol</iconset>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolUList">
+        <property name="toolTip">
+         <string>Ordered list</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/img-ul</normaloff>:/img-ul</iconset>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolLink">
+        <property name="toolTip">
+         <string>Add link to text</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/img-link</normaloff>:/img-link</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolUnlink">
+        <property name="toolTip">
+         <string>Unlink text</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/img-unlink</normaloff>:/img-unlink</iconset>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item>
     <widget class="QTextEdit" name="textEdit">
      <property name="accessibleName">
@@ -36,7 +302,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons/icons.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>
@@ -54,8 +322,241 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>Form</receiver>
+   <slot>warn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>351</x>
+     <y>698</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>351</x>
+     <y>359</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolBold</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>bold()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>231</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>351</x>
+     <y>454</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolCopy</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>copy()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>57</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>351</x>
+     <y>462</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolCut</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>cut()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>115</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>351</x>
+     <y>462</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolHeader</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>header()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>405</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>351</x>
+     <y>454</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolItalic</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>italic()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>289</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>351</x>
+     <y>454</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolLink</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>link()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>579</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>351</x>
+     <y>454</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolOList</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>orderedList()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>463</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>351</x>
+     <y>454</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolPaste</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>paste()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>173</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>351</x>
+     <y>462</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolUList</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>unorderedList()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>521</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>351</x>
+     <y>454</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolUnderline</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>underline()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>347</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>351</x>
+     <y>454</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolUnlink</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>unlink()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>637</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>351</x>
+     <y>454</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolUndo</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>undo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>49</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>351</x>
+     <y>462</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolRedo</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>redo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>99</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>351</x>
+     <y>462</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>save()</slot>
+  <slot>warn()</slot>
+  <slot>bold()</slot>
+  <slot>italic()</slot>
+  <slot>underline()</slot>
+  <slot>header()</slot>
+  <slot>orderedList()</slot>
+  <slot>unorderedList()</slot>
+  <slot>link()</slot>
+  <slot>unlink()</slot>
  </slots>
 </ui>
