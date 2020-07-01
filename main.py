@@ -106,8 +106,8 @@ class ViewStudents(QtWidgets.QMainWindow):
         # Show the data in the table
         # Only show first 7 columns
         self.ui.tableView.setModel(self.table)
-        for x in range(8, 20):
-            self.ui.tableView.setColumnHidden(x, True)
+        for n in range(8, 20):
+            self.ui.tableView.setColumnHidden(n, True)
         self.ui.tableView.resizeColumnsToContents()
         self.ui.tableView.show()
 
@@ -553,8 +553,8 @@ class Student(QtWidgets.QMainWindow):
         pass
 
     def viewPlan(self):
-        # Placeholder for viewing and editing therapy plan
-        pass
+        self.plan = Plan(selected)
+        self.plan.show()
 
 
 class Assess():
@@ -565,10 +565,78 @@ class Assess():
 
 
 class Plan(QtWidgets.QWidget):
-    def __init__(self):
+    def __init__(self, selected):
         super().__init__()
         self.ui = report.Ui_Form()
         self.ui.setupUi(self)
+
+        # Load the data and input the existing plan
+        self.table = QtSql.QSqlTableModel()
+        self.table.setTable('student_list')
+        self.table.select()
+        record = self.table.record(selected)
+        self.table.wRecord = record
+        self.ui.textEdit.setHtml(record.value(18))
+
+
+    def save(self):
+        # Overwrites selected record with new plan
+        self.table.wRecord.setValue(18, self.ui.textEdit.toHtml())
+        self.table.setRecord(selected, self.table.wRecord)
+
+    def warn(self):
+        # To warn user before closing
+        warn = QtWidgets.QMessageBox()
+        warn.setIcon(QtWidgets.QMessageBox.Warning)
+        warn.setText(
+            "Any unsaved changes to the text will be lost, are you sure?")
+        warn.setStandardButtons(
+            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+
+        if warn.exec_() == 16384:   # If "yes" is pressed
+            self.hide()
+
+    def bold(self):
+        if self.ui.textEdit.fontWeight() == 50:
+            self.ui.textEdit.setFontWeight(100)
+        else:
+            self.ui.textEdit.setFontWeight(50)
+
+    def header(self):
+        if self.ui.textEdit.fontPointSize() == 11.0:
+            self.ui.textEdit.setFontPointSize(20)
+        else:
+            self.ui.textEdit.setFontPointSize(11)
+
+    def italic(self):
+        if self.ui.textEdit.fontItalic():
+            self.ui.textEdit.setFontItalic(False)
+        else:
+            self.ui.textEdit.setFontItalic(True)
+
+    def link(self):
+        pass
+
+    def orderedList(self):
+        pass
+
+    def unorderedList(self):
+        cursor = self.ui.textEdit.textCursor()
+        if cursor.currentList() == None:
+            cursor.createList(QtGui.QTextListFormat.ListSquare)
+            self.ui.textEdit.setTextCursor(cursor)
+        else:
+            cursor = cursor.selectedText()
+            self.ui.textEdit.insertPlainText(cursor)
+
+    def underline(self):
+        if self.ui.textEdit.fontUnderline():
+            self.ui.textEdit.setFontUnderline(False)
+        else:
+            self.ui.textEdit.setFontUnderline(True)
+
+    def unlink(self):
+        pass
 
 
 class Stats(QtWidgets.QMainWindow):
@@ -592,6 +660,6 @@ class About(QtWidgets.QMainWindow):
 # Define QT5 app and launch login dialog
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    start = Login()
-    # start.show()
+    start = ViewStudents()
+    start.show()
     app.exec_()
