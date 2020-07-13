@@ -243,40 +243,6 @@
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QToolButton" name="toolLink">
-        <property name="toolTip">
-         <string>Add link to text</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="icons/icons.qrc">
-          <normaloff>:/img-link</normaloff>:/img-link</iconset>
-        </property>
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="toolUnlink">
-        <property name="toolTip">
-         <string>Unlink text</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="icons/icons.qrc">
-          <normaloff>:/img-unlink</normaloff>:/img-unlink</iconset>
-        </property>
-        <property name="checkable">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
@@ -419,22 +385,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>toolLink</sender>
-   <signal>clicked()</signal>
-   <receiver>Form</receiver>
-   <slot>link()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>579</x>
-     <y>29</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>351</x>
-     <y>454</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>toolOList</sender>
    <signal>clicked()</signal>
    <receiver>Form</receiver>
@@ -490,22 +440,6 @@
    <hints>
     <hint type="sourcelabel">
      <x>347</x>
-     <y>29</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>351</x>
-     <y>454</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>toolUnlink</sender>
-   <signal>clicked()</signal>
-   <receiver>Form</receiver>
-   <slot>unlink()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>637</x>
      <y>29</y>
     </hint>
     <hint type="destinationlabel">

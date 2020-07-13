@@ -378,17 +378,13 @@
     <addaction name="actionLock"/>
     <addaction name="actionEdit"/>
    </widget>
-   <widget class="QMenu" name="menuPrint">
+   <widget class="QMenu" name="menuExport">
     <property name="title">
      <string>Print</string>
     </property>
-   </widget>
-   <widget class="QMenu" name="menuExport">
-    <property name="title">
-     <string>Export</string>
-    </property>
-    <addaction name="actionExport_as_PDF"/>
+    <addaction name="actionPrint_details"/>
     <addaction name="actionExport_as_Word_document"/>
+    <addaction name="actionExport_as_PDF"/>
    </widget>
    <widget class="QMenu" name="menuAssessment">
     <property name="title">
@@ -409,7 +405,6 @@
     <addaction name="menuTools"/>
    </widget>
    <addaction name="menuSave"/>
-   <addaction name="menuPrint"/>
    <addaction name="menuExport"/>
    <addaction name="menuAssessment"/>
   </widget>
@@ -477,6 +472,11 @@
    </property>
    <property name="text">
     <string>Edit Record</string>
+   </property>
+  </action>
+  <action name="actionPrint_details">
+   <property name="text">
+    <string>Print details</string>
    </property>
   </action>
  </widget>
