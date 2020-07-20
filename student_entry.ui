@@ -382,9 +382,8 @@
     <property name="title">
      <string>Print</string>
     </property>
-    <addaction name="actionPrint_details"/>
+    <addaction name="actionPrint"/>
     <addaction name="actionExport_as_Word_document"/>
-    <addaction name="actionExport_as_PDF"/>
    </widget>
    <widget class="QMenu" name="menuAssessment">
     <property name="title">
@@ -474,7 +473,7 @@
     <string>Edit Record</string>
    </property>
   </action>
-  <action name="actionPrint_details">
+  <action name="actionPrint">
    <property name="text">
     <string>Print details</string>
    </property>

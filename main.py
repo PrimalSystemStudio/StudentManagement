@@ -3,18 +3,18 @@
 # ----------- Created by Red&Black Technical  -------------- #
 # ---------------------------------------------------------- #
 
-# Export as pyinstaller main.py -F
+# Export as pyinstaller main.py -F or try fbs
 # Username and password are both "admin"
 import sys
 import login
 import landing
 import student_entry
 import view_students
-import report
-from PyQt5 import QtCore, QtWidgets, QtGui, QtSql
+import plan
+from PyQt5 import QtCore, QtWidgets, QtGui, QtSql, QtPrintSupport
 
 # How many hours been spent on this project (for personal use)
-hours = 31
+hours = 35
 
 
 # Define login dialogue
@@ -321,9 +321,12 @@ class Student(QtWidgets.QMainWindow):
         self.ui = student_entry.Ui_MainWindow()
         self.ui.setupUi(self)
 
+        # Select table in the database
         self.table = QtSql.QSqlTableModel()
         self.table.setTable('student_list')
         self.table.select()
+
+        # If a record is highlighted, it will be selected
         try:
             selected
         except NameError:
@@ -366,36 +369,13 @@ class Student(QtWidgets.QMainWindow):
         self.ui.lineEdit_village.setText(record.value(16))
         self.ui.lineEdit_contactRelation.setText(record.value(17))
 
-        # Record starts off locked
-        self.ui.actionLock.setEnabled(False)
-        self.ui.lineEdit_birthplace.setReadOnly(True)
-        self.ui.lineEdit_caregiver.setReadOnly(True)
-        self.ui.lineEdit_diagnosis.setReadOnly(True)
-        self.ui.lineEdit_family.setReadOnly(True)
-        self.ui.lineEdit_name1.setReadOnly(True)
-        self.ui.lineEdit_name2.setReadOnly(True)
-        self.ui.lineEdit_name3.setReadOnly(True)
-        self.ui.lineEdit_nationality.setReadOnly(True)
-        self.ui.radioFemale.setEnabled(False)
-        self.ui.radioMale.setEnabled(False)
-        self.ui.dateBirth.setReadOnly(True)
-        self.ui.lineEdit_block.setReadOnly(True)
-        self.ui.lineEdit_house.setReadOnly(True)
-        self.ui.lineEdit_lane.setReadOnly(True)
-        self.ui.lineEdit_street.setReadOnly(True)
-        self.ui.lineEdit_village.setReadOnly(True)
-        self.ui.lineEdit_wallaya.setReadOnly(True)
-        self.ui.lineEdit_contactMobile.setReadOnly(True)
-        self.ui.lineEdit_contactName.setReadOnly(True)
-        self.ui.lineEdit_contactRelation.setReadOnly(True)
-
-        # "Lock record" is greyed out until the record is locked
-        self.ui.actionEdit.setEnabled(True)
-        self.ui.actionLock.setEnabled(False)
+        # "Edit record" is greyed out until the record is locked
+        self.ui.actionEdit.setEnabled(False)
+        self.ui.actionLock.setEnabled(True)
 
         # Connect actions to relevant functions
-        self.ui.actionExport_as_PDF.triggered.connect(
-            self.exportPDF)
+        self.ui.actionPrint.triggered.connect(
+            self.printStudents)
         self.ui.actionExport_as_Word_document.triggered.connect(
             self.exportDocx)
         self.ui.actionBattele.triggered.connect(
@@ -446,19 +426,19 @@ class Student(QtWidgets.QMainWindow):
             9, self.ui.lineEdit_contactName.text())
         self.table.wRecord.setValue(
             10, self.ui.lineEdit_contactMobile.text())
-        self.table.newRecord.setValue(
+        self.table.wRecord.setValue(
             11, self.ui.lineEdit_wallaya.text())
-        self.table.newRecord.setValue(
+        self.table.wRecord.setValue(
             12, self.ui.lineEdit_lane.text())
-        self.table.newRecord.setValue(
+        self.table.wRecord.setValue(
             13, self.ui.lineEdit_house.text())
-        self.table.newRecord.setValue(
+        self.table.wRecord.setValue(
             14, self.ui.lineEdit_street.text())
-        self.table.newRecord.setValue(
+        self.table.wRecord.setValue(
             15, self.ui.lineEdit_block.text())
-        self.table.newRecord.setValue(
+        self.table.wRecord.setValue(
             16, self.ui.lineEdit_village.text())
-        self.table.newRecord.setValue(
+        self.table.wRecord.setValue(
             17, self.ui.lineEdit_contactRelation.text())
 
         # Overwrite the record in the table
@@ -491,8 +471,8 @@ class Student(QtWidgets.QMainWindow):
             self.ui.actionEdit.setEnabled(False)
 
     def lockRecord(self):
-        # Stops text from being edited
         if self.ui.actionLock.isEnabled():
+            # Stops text from being edited
             self.ui.lineEdit_birthplace.setReadOnly(True)
             self.ui.lineEdit_caregiver.setReadOnly(True)
             self.ui.lineEdit_diagnosis.setReadOnly(True)
@@ -516,17 +496,92 @@ class Student(QtWidgets.QMainWindow):
             self.ui.actionEdit.setEnabled(True)
             self.ui.actionLock.setEnabled(False)
 
-    def printStudents(self):
-        # Placeholder for print function
-        pass
+            # Turns text into a document
+            birthdate = self.ui.dateBirth.dateTime()
+            self.birthdate = self.ui.dateBirth.textFromDateTime(birthdate)
+            with open('documents/record.txt', 'w+') as doc:
+                doc.write(
+                    "<head><meta http-equiv=\"Content-Type\""
+                    + "content=\"text/html; charset=utf-8\">"
+                    + "</head>\n<body>\n"
+                    + "<p><b>Given Names:</b> " 
+                    + self.ui.lineEdit_name1.text() + " "
+                    + self.ui.lineEdit_name2.text() + " "
+                    + self.ui.lineEdit_name3.text() + "</p>\n"
+                    + "<p><b>Family Name:</b> "
+                    + self.ui.lineEdit_family.text() + "</p>\n"
+                    + "<p><b>Date of birth:</b> "
+                    + self.birthdate + "</p>\n"
+                    + "<p><b>Birthplace:</b> "
+                    + self.ui.lineEdit_birthplace.text() + "</p>\n"
+                    + "<p><b>Caregiver:</b> "
+                    + self.ui.lineEdit_caregiver.text() + "</p>\n"
+                    + "<p><b>Diagnosis:</b> "
+                    + self.ui.lineEdit_diagnosis.text() + "</p>\n"
+                    + "<p><b>Nationality:</b> "
+                    + self.ui.lineEdit_nationality.text() + "</p>\n</body>")
 
-    def exportPDF(self):
-        # Placeholder for export function
-        pass
+                if self.ui.radioFemale.isChecked():
+                    doc.write("<p><b>Sex:</b> Female</p>\n")
+                elif self.ui.radioMale.isChecked():
+                    doc.write("<p><b>Sex:</b> Male</p>\n")
+                else:
+                    doc.write("<p><b>Sex:</b> </p>\n")
+                    
+                doc.write(
+                    "<p><b>Address:</b> " 
+                    + self.ui.lineEdit_wallaya.text()
+                    + ", " + self.ui.lineEdit_village.text()
+                    + ", " + self.ui.lineEdit_block.text()
+                    + ", " + self.ui.lineEdit_street.text()
+                    + " street, " + self.ui.lineEdit_lane.text()
+                    + " lane, house" + self.ui.lineEdit_house.text() 
+                    + "</p>\n"
+                    + "<p><b>Emergency contact:</b> "
+                    + self.ui.lineEdit_contactName.text()
+                    + " (" + self.ui.lineEdit_contactRelation.text() + ") "
+                    + self.ui.lineEdit_contactMobile.text() + "</p>\n")
+
+            with open('documents/record.txt', 'r+') as doc:
+                self.html = doc.read()
+
+            self.document = QtGui.QTextDocument()
+            self.document.setHtml(self.html)
+
+    def printStudents(self):
+        if self.ui.actionLock.isEnabled():
+            warn = QtWidgets.QMessageBox()
+            warn.setIcon(QtWidgets.QMessageBox.Critical)
+            warn.setWindowTitle("Warning")
+            warn.setText(
+                "Please lock the record before printing.")
+            warn.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            warn.exec_()
+        else:
+            printDialog = QtPrintSupport.QPrintDialog()
+            if printDialog.exec_() == QtWidgets.QDialog.Accepted:
+                self.document.print_(printDialog.printer())
 
     def exportDocx(self):
-        # Placeholder for export function
-        pass
+        # If the document isn't locked, ask to lock
+        # Lock is needed to build doc for export
+        if self.ui.actionLock.isEnabled():
+            warn = QtWidgets.QMessageBox()
+            warn.setIcon(QtWidgets.QMessageBox.Critical)
+            warn.setWindowTitle("Warning")
+            warn.setText(
+                "Please lock the record before printing.")
+            warn.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            warn.exec_()
+        # If document is locked ask to save file
+        else:
+            exportDialog = QtWidgets.QFileDialog.getSaveFileName(
+                self, "Save as...",
+                QtCore.QDir.currentPath(),
+                "Text files (*.txt *.docx *.odt)")
+            if exportDialog:
+                with open(exportDialog[0] + ".docx", 'w') as f:
+                    f.write(self.document.toPlainText())
 
     def assessBattele(self):
         # Placeholder for Battele assessment
@@ -567,7 +622,7 @@ class Assess():
 class Plan(QtWidgets.QWidget):
     def __init__(self, selected):
         super().__init__()
-        self.ui = report.Ui_Form()
+        self.ui = plan.Ui_Form()
         self.ui.setupUi(self)
 
         # Load the data and input the existing plan
@@ -577,7 +632,6 @@ class Plan(QtWidgets.QWidget):
         record = self.table.record(selected)
         self.table.wRecord = record
         self.ui.textEdit.setHtml(record.value(18))
-
 
     def save(self):
         # Overwrites selected record with new plan
@@ -614,29 +668,45 @@ class Plan(QtWidgets.QWidget):
         else:
             self.ui.textEdit.setFontItalic(True)
 
-    def link(self):
-        pass
-
     def orderedList(self):
-        pass
+        cursor = self.ui.textEdit.textCursor()
+        cursorList = cursor.currentList()
+        if cursorList is None:  # If the block isn't a list
+            cursor.createList(QtGui.QTextListFormat.ListDecimal)
+            self.ui.textEdit.setTextCursor(cursor)
+        elif cursorList.format().style() != -4:  # If the block isn't numbered
+            cursor.createList(QtGui.QTextListFormat.ListDecimal)
+            self.ui.textEdit.setTextCursor(cursor)
+        else:
+            newCursor = cursor.selectedText()
+            newCursor = newCursor.replace("\u2029", "\n")
+            blockFormat = cursor.blockFormat()
+            blockFormat.setObjectIndex(-1)
+            cursor.setBlockFormat(blockFormat)
+            self.ui.textEdit.setTextCursor(cursor)
 
     def unorderedList(self):
         cursor = self.ui.textEdit.textCursor()
-        if cursor.currentList() == None:
+        cursorList = cursor.currentList()
+        if cursorList is None:   # If the block is not a list
+            cursor.createList(QtGui.QTextListFormat.ListSquare)
+            self.ui.textEdit.setTextCursor(cursor)
+        elif cursorList.format().style() != -3:   # If the block isn't bulleted
             cursor.createList(QtGui.QTextListFormat.ListSquare)
             self.ui.textEdit.setTextCursor(cursor)
         else:
-            cursor = cursor.selectedText()
-            self.ui.textEdit.insertPlainText(cursor)
+            newCursor = cursor.selectedText()
+            newCursor = newCursor.replace("\u2029", "\n")
+            blockFormat = cursor.blockFormat()
+            blockFormat.setObjectIndex(-1)
+            cursor.setBlockFormat(blockFormat)
+            self.ui.textEdit.setTextCursor(cursor)
 
     def underline(self):
         if self.ui.textEdit.fontUnderline():
             self.ui.textEdit.setFontUnderline(False)
         else:
             self.ui.textEdit.setFontUnderline(True)
-
-    def unlink(self):
-        pass
 
 
 class Stats(QtWidgets.QMainWindow):
