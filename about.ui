@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>385</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>About this software</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>70</y>
+        <width>361</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Student Management Software 0.1.0</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>150</y>
+        <width>371</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>This software is licensed under the</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>170</y>
+        <width>371</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;a href=&quot;https://github.com/PrimalSystemStudio/StudentManagement/blob/master/LICENSE.md&quot;&gt;GNU AFFERO GENERAL PUBLIC LICENSE&lt;/a&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+      <property name="margin">
+       <number>-3</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>30</y>
+        <width>361</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">text-align: center
+</string>
+      </property>
+      <property name="text">
+       <string>About</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>90</y>
+        <width>371</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>July 2020</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

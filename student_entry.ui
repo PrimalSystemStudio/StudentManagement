@@ -46,26 +46,7 @@
      </widget>
     </item>
     <item>
-     <layout class="QGridLayout" name="student_details" rowstretch="0,0,0,0">
-      <item row="1" column="5">
-       <widget class="QDateEdit" name="dateBirth">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="statusTip">
-         <string/>
-        </property>
-        <property name="accessibleName">
-         <string>Date of birth</string>
-        </property>
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
+     <layout class="QGridLayout" name="student_details" rowstretch="0,0,0,0,0">
       <item row="0" column="4">
        <widget class="QLabel" name="label_family">
         <property name="text">
@@ -87,13 +68,6 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="3">
-       <widget class="QLineEdit" name="lineEdit_diagnosis">
-        <property name="accessibleName">
-         <string>Hospital diagnosis</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="4">
        <widget class="QLabel" name="label_birthdate">
         <property name="text">
@@ -105,6 +79,32 @@
        <widget class="QLineEdit" name="lineEdit_name3">
         <property name="accessibleName">
          <string>Grandfather's name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="5">
+       <widget class="QDateEdit" name="dateBirth">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="statusTip">
+         <string/>
+        </property>
+        <property name="accessibleName">
+         <string>Date of birth</string>
+        </property>
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLineEdit" name="lineEdit_diagnosis">
+        <property name="accessibleName">
+         <string>Hospital diagnosis</string>
         </property>
        </widget>
       </item>
@@ -195,6 +195,13 @@
        <widget class="QLabel" name="label_diagnosis">
         <property name="text">
          <string>Hospital Diagnosis</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="3">
+       <widget class="QRadioButton" name="radioOther">
+        <property name="text">
+         <string>Other</string>
         </property>
        </widget>
       </item>

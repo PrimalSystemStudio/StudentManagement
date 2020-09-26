@@ -11,10 +11,13 @@ import landing
 import student_entry
 import view_students
 import plan
+import about
+import stats
+import guide
 from PyQt5 import QtCore, QtWidgets, QtGui, QtSql, QtPrintSupport
 
 # How many hours been spent on this project (for personal use)
-hours = 35
+hours = 36
 
 
 # Define login dialogue
@@ -235,6 +238,8 @@ class NewStudent(QtWidgets.QMainWindow):
                 self.table.newRecord.setValue(7, "Female")
             elif self.ui.radioMale.isChecked():
                 self.table.newRecord.setValue(7, "Male")
+            elif self.ui.radioOther.isChecked():
+                self.table.newRecord.setValue(7, "Other")
 
             self.table.newRecord.setValue(
                 8, self.ui.lineEdit_caregiver.text())
@@ -274,6 +279,7 @@ class NewStudent(QtWidgets.QMainWindow):
             self.ui.lineEdit_nationality.setReadOnly(False)
             self.ui.radioFemale.setEnabled(True)
             self.ui.radioMale.setEnabled(True)
+            self.ui.radioOther.setEnabled(True)
             self.ui.dateBirth.setReadOnly(False)
             self.ui.lineEdit_block.setReadOnly(False)
             self.ui.lineEdit_house.setReadOnly(False)
@@ -300,6 +306,7 @@ class NewStudent(QtWidgets.QMainWindow):
             self.ui.lineEdit_nationality.setReadOnly(True)
             self.ui.radioFemale.setEnabled(False)
             self.ui.radioMale.setEnabled(False)
+            self.ui.radioOther.setEnabled(False)
             self.ui.dateBirth.setReadOnly(True)
             self.ui.lineEdit_block.setReadOnly(True)
             self.ui.lineEdit_house.setReadOnly(True)
@@ -352,9 +359,15 @@ class Student(QtWidgets.QMainWindow):
         if record.value(7) == "Female":
             self.ui.radioFemale.setChecked(True)
             self.ui.radioMale.setChecked(False)
+            self.ui.radioOther.setChecked(False)
         elif record.value(7) == "Male":
             self.ui.radioMale.setChecked(True)
             self.ui.radioFemale.setChecked(False)
+            self.ui.radioOther.setChecked(False)
+        elif record.value(7) == "Other":
+            self.ui.radioMale.setChecked(False)
+            self.ui.radioFemale.setChecked(False)
+            self.ui.radioOther.setChecked(True)
         dateBirth = record.value(3)
         dateBirth = QtCore.QDate.fromString(dateBirth, "dd/MM/yyyy")
         self.ui.dateBirth.setDate(dateBirth)
@@ -419,6 +432,8 @@ class Student(QtWidgets.QMainWindow):
             self.table.wRecord.setValue(7, "Female")
         elif self.ui.radioMale.isChecked():
             self.table.wRecord.setValue(7, "Male")
+        elif self.ui.radioOther.isChecked():
+            self.table.wRecord.setValue(7, "Other")
 
         self.table.wRecord.setValue(
             8, self.ui.lineEdit_contactRelation.text())
@@ -457,6 +472,7 @@ class Student(QtWidgets.QMainWindow):
             self.ui.lineEdit_nationality.setReadOnly(False)
             self.ui.radioFemale.setEnabled(True)
             self.ui.radioMale.setEnabled(True)
+            self.ui.radioOther.setEnabled(True)
             self.ui.dateBirth.setReadOnly(False)
             self.ui.lineEdit_block.setReadOnly(False)
             self.ui.lineEdit_house.setReadOnly(False)
@@ -483,6 +499,7 @@ class Student(QtWidgets.QMainWindow):
             self.ui.lineEdit_nationality.setReadOnly(True)
             self.ui.radioFemale.setEnabled(False)
             self.ui.radioMale.setEnabled(False)
+            self.ui.radioOther.setEnabled(False)
             self.ui.dateBirth.setReadOnly(True)
             self.ui.lineEdit_block.setReadOnly(True)
             self.ui.lineEdit_house.setReadOnly(True)
@@ -525,6 +542,8 @@ class Student(QtWidgets.QMainWindow):
                     doc.write("<p><b>Sex:</b> Female</p>\n")
                 elif self.ui.radioMale.isChecked():
                     doc.write("<p><b>Sex:</b> Male</p>\n")
+                elif self.ui.radioOther.isChecked():
+                    doc.write("<p><b>Sex:</b> Other</p>\n")
                 else:
                     doc.write("<p><b>Sex:</b> </p>\n")
                     
@@ -612,7 +631,7 @@ class Student(QtWidgets.QMainWindow):
         self.plan.show()
 
 
-class Assess():
+class AssessBat():
     def __init__(self):
         super().__init__()
         # Placeholder until therapy section is generated
@@ -709,27 +728,30 @@ class Plan(QtWidgets.QWidget):
             self.ui.textEdit.setFontUnderline(True)
 
 
-class Stats(QtWidgets.QMainWindow):
+class Stats(QtWidgets.QWidget):
     def __init__(self):
-        # Placeholder until UI for stats page is generated
-        pass
+        super().__init__()
+        self.ui = stats.Ui_Form()
+        self.ui.setupUi(self)
 
 
-class Guide(QtWidgets.QMainWindow):
+class Guide(QtWidgets.QWidget):
     def __init__(self):
-        # Placeholder until UI for guide page is generated
-        pass
+        super().__init__()
+        self.ui = guide.Ui_Form()
+        self.ui.setupUi(self)
 
 
-class About(QtWidgets.QMainWindow):
+class About(QtWidgets.QWidget):
     def __init__(self):
-        # Placeholder until UI for about page is generated
-        pass
+        super().__init__()
+        self.ui = about.Ui_Form()
+        self.ui.setupUi(self)
 
 
 # Define QT5 app and launch login dialog
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    start = ViewStudents()
+    start = About()
     start.show()
     app.exec_()

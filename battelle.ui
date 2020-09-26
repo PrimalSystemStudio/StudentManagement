@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Wizard</class>
+ <widget class="QWizard" name="Wizard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1072</width>
+    <height>854</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Battelle Developmental Inventory</string>
+  </property>
+  <widget class="QWizardPage" name="Intro">
+   <property name="title">
+    <string>Introduction</string>
+   </property>
+   <property name="subTitle">
+    <string>General information on assessment</string>
+   </property>
+   <attribute name="pageId">
+    <string notr="true">page1</string>
+   </attribute>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1051</width>
+      <height>731</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1049</width>
+       <height>729</height>
+      </rect>
+     </property>
+     <widget class="QWidget" name="formLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1041</width>
+        <height>731</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="introLayout">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMinimumSize</enum>
+       </property>
+       <property name="horizontalSpacing">
+        <number>2</number>
+       </property>
+       <item row="1" column="0">
+        <widget class="QLabel" name="examinerLabel">
+         <property name="text">
+          <string>Examiner name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="lineExam"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="adminLabel">
+         <property name="text">
+          <string>Items administrated in</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QFrame" name="itemFrame">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <property name="lineWidth">
+          <number>22</number>
+         </property>
+         <property name="midLineWidth">
+          <number>22</number>
+         </property>
+         <widget class="QRadioButton" name="radioEnglish">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>0</y>
+            <width>112</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>English only</string>
+          </property>
+         </widget>
+         <widget class="QRadioButton" name="radioArabic">
+          <property name="geometry">
+           <rect>
+            <x>130</x>
+            <y>0</y>
+            <width>112</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Arabic only</string>
+          </property>
+         </widget>
+         <widget class="QRadioButton" name="radioBoth">
+          <property name="geometry">
+           <rect>
+            <x>240</x>
+            <y>0</y>
+            <width>191</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Both English and Arabic</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="labelAssess">
+         <property name="text">
+          <string>Date of testing</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QDateEdit" name="dateEdit"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="assessLabel">
+         <property name="text">
+          <string>Assessment period</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QFrame" name="periodFrame">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <property name="lineWidth">
+          <number>22</number>
+         </property>
+         <property name="midLineWidth">
+          <number>22</number>
+         </property>
+         <widget class="QRadioButton" name="radioMiddle">
+          <property name="geometry">
+           <rect>
+            <x>170</x>
+            <y>0</y>
+            <width>112</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Mid-year</string>
+          </property>
+         </widget>
+         <widget class="QRadioButton" name="radioBegin">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>0</y>
+            <width>151</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Beginning of year</string>
+          </property>
+         </widget>
+         <widget class="QRadioButton" name="radioEnd">
+          <property name="geometry">
+           <rect>
+            <x>280</x>
+            <y>0</y>
+            <width>121</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>End of year</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="2">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="strucLabel">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>22</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Structured items</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>(Items were administered directly to the student by the examiner(s))</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkLanguage">
+         <property name="text">
+          <string>Student's language proficiency was sufficient for testing</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkInstruct">
+         <property name="text">
+          <string>Student understood instructions</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkVision">
+         <property name="text">
+          <string>Student's vision was within normal range or corrected</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkHearing">
+         <property name="text">
+          <string>Student's hearing was within normal range or corrected</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkMotor">
+         <property name="text">
+          <string>Student's motor functioning was conducive to valid and reliable results</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkhealth">
+         <property name="text">
+          <string>Student's health was good and was conducive to valid and reliable results</string>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkCoop">
+         <property name="text">
+          <string>Student was cooperative</string>
+         </property>
+        </widget>
+       </item>
+       <item row="14" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkEnv">
+         <property name="text">
+          <string>Testing environment (i.e. ventilation, temperature, lighting etc.) was satisfactory</string>
+         </property>
+        </widget>
+       </item>
+       <item row="15" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkValid">
+         <property name="text">
+          <string>Testing session is considered a valid representation of student's current functioning</string>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="0" colspan="2">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="17" column="0">
+        <widget class="QLabel" name="strucLabel_2">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>22</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Observation items</string>
+         </property>
+        </widget>
+       </item>
+       <item row="17" column="1">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>(Items were administered directly to the student by the examiner(s))</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QWizardPage" name="SC"/>
+  <widget class="QWizardPage" name="PR"/>
+  <widget class="QWizardPage" name="AI"/>
+  <widget class="QWizardPage" name="PI"/>
+  <widget class="QWizardPage" name="SR"/>
+  <widget class="QWizardPage" name="RC"/>
+  <widget class="QWizardPage" name="EC"/>
+  <widget class="QWizardPage" name="GM"/>
+  <widget class="QWizardPage" name="FM"/>
+  <widget class="QWizardPage" name="PM"/>
+  <widget class="QWizardPage" name="AM"/>
+  <widget class="QWizardPage" name="RA"/>
+  <widget class="QWizardPage" name="PC"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
